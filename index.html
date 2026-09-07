@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hello Padel Russia — официальный русский курс падел-академии</title>
+<meta name="description" content="Официальный русский перевод курса Hello Padel Academy: 9 модулей, 166 видеоуроков, более 15 часов. Метод Маури Андрини. Первая глава — бесплатно.">
+<meta property="og:title" content="Hello Padel Russia — официальный русский курс">
+<meta property="og:description" content="9 модулей, 22 главы, 166 уроков. Техника, тактика и тренировки падела на русском.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0A; --ink-soft:#6B6B6B; --paper:#FFFFFF; --off:#FAFAF8;
+  --line:#E6E6E6; --brand:#FFD200; --brand-soft:#FFF6CC; --brand-tint:#FFFCEF;
+  --gutter:clamp(20px,5vw,64px); --sect:clamp(64px,9vw,128px);
+  --display:clamp(38px,7.2vw,92px); --h1:clamp(32px,5.4vw,68px);
+  --h2:clamp(26px,3.6vw,46px); --h3:clamp(19px,1.6vw,23px);
+  --lead:clamp(17px,1.5vw,21px); --body:clamp(16px,1.25vw,18px);
+  --title:'Unbounded',system-ui,sans-serif; --text:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-decoration-color:var(--brand);text-underline-offset:4px}
+h1,h2,h3,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+button{font:inherit;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.sect{padding:var(--sect) 0}
+.kick{font:700 13px/1.2 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.h2{font:700 var(--h2)/1.1 var(--title);letter-spacing:-.02em}
+.lead{font:500 var(--lead)/1.55 var(--text)}
+.body{font:400 var(--body)/1.65 var(--text)}
+.stack{display:grid;gap:14px}
+.grid{display:grid;gap:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 32px;border-radius:999px;
+  font:700 clamp(15px,1.2vw,17px)/1 var(--title);letter-spacing:-.01em;border:0;cursor:pointer;
+  background:linear-gradient(180deg,#FFDE3D,#FFD200 50%,#E5BC00);color:var(--ink);
+  box-shadow:0 8px 28px rgba(255,210,0,.34),inset 0 1px 0 rgba(255,255,255,.55);
+  transition:transform .24s cubic-bezier(.16,1,.3,1),box-shadow .24s}
+.btn:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 12px 36px rgba(255,210,0,.44),inset 0 1px 0 rgba(255,255,255,.55)}
+.btn.ghost{background:none;box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff;box-shadow:none}
+.btn.dark{background:var(--ink);color:#fff;box-shadow:none}
+.btn.sm{min-height:44px;padding:0 22px;font-size:14px}
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.82);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);box-shadow:0 1px 0 var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px var(--gutter);max-width:1200px;margin:0 auto}
+.brand{display:inline-flex;align-items:center;gap:10px}
+.brand img{width:38px;height:38px;border-radius:8px}
+.tag{font:800 11px/1 var(--title);letter-spacing:.04em;text-transform:uppercase;background:var(--brand);padding:7px 10px;border-radius:999px}
+nav.main{display:flex;gap:22px;font:600 15px/1 var(--text)}
+@media(max-width:900px){nav.main{display:none}.bar .btn.sm{display:none}.burger{display:grid}}
+.hero{position:relative;padding:clamp(40px,6vw,72px) 0 var(--sect);overflow:hidden}
+.hero::before{content:"";position:absolute;left:62%;top:24%;width:min(900px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,210,0,.35),rgba(255,210,0,0) 70%);pointer-events:none}
+.hero-in{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,4vw,56px);align-items:center}
+.badge{display:inline-block;justify-self:start;padding:7px 14px;border-radius:999px;background:var(--ink);color:var(--brand);font:700 12px/1.3 var(--text);letter-spacing:.07em;text-transform:uppercase}
+h1{font:800 var(--display)/1.02 var(--title);letter-spacing:-.03em;text-transform:uppercase}
+.hero p{max-width:52ch}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.note{justify-self:start;padding:12px 18px;border-radius:999px;background:var(--brand-soft);font:500 15px/1.4 var(--text)}
+.panel{position:relative;aspect-ratio:4/3;border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#141414,#0A0A0A);display:grid;align-content:center;justify-items:center;gap:20px;padding:32px;text-align:center;color:#fff}
+.panel::before{content:"";position:absolute;inset:0;opacity:.1;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:100% 50%,50% 100%;background-position:center}
+.panel img{width:clamp(72px,12vw,96px);height:auto;border-radius:16px;position:relative}
+.panel b{position:relative;font:800 clamp(20px,2.4vw,30px)/1.15 var(--title);letter-spacing:-.02em;text-transform:uppercase}
+.panel span{position:relative;font:500 15px/1.5 var(--text);color:rgba(255,255,255,.72);max-width:34ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;margin-top:clamp(40px,5vw,64px)}
+.stats b{display:block;font:800 clamp(42px,5.4vw,76px)/1 var(--title);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.stats span{font:700 13px/1.2 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.marquee{height:64px;background:var(--ink);color:var(--brand);overflow:hidden;display:flex;align-items:center}
+.marquee ul{display:flex;gap:40px;white-space:nowrap;padding-left:40px;animation:slide 60s linear infinite;font:700 clamp(14px,1.4vw,18px)/1 var(--title);text-transform:uppercase}
+.marquee li{display:inline-flex;align-items:center;gap:40px}
+.marquee li::after{content:"";width:8px;height:8px;border-radius:999px;background:var(--brand)}
+.marquee:hover ul{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px}
+.card{background:#fff;border-radius:20px;padding:clamp(24px,2.4vw,32px);box-shadow:0 2px 8px rgba(10,10,10,.08),inset 0 0 0 1px var(--line);display:grid;gap:12px;align-content:start;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,10,10,.14),inset 0 0 0 1px var(--line)}
+.num{width:56px;height:56px;border-radius:999px;background:var(--brand);display:grid;place-items:center;font:800 22px/1 var(--title);letter-spacing:-.02em}
+.card h3{font:700 18px/1.35 var(--text);letter-spacing:-.01em}
+.card p{font:400 16px/1.6 var(--text);color:#6B6B6B}
+.brandish{position:relative;background:var(--brand);overflow:hidden}
+.dark{position:relative;background:linear-gradient(180deg,#141414,#0A0A0A);color:#fff;overflow:hidden}
+.brandish::before,.dark::before{content:"";position:absolute;inset:0;opacity:.1;background-image:linear-gradient(#fff 2px,transparent 2px),linear-gradient(90deg,#fff 2px,transparent 2px);background-size:100% 50%,33.33% 100%;background-position:center;pointer-events:none}
+.dark::before{opacity:.08}
+.brandish .wrap,.dark .wrap{position:relative}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(20px,2.4vw,32px)}
+.col{display:grid;gap:12px;align-content:start;padding-top:20px;border-top:2px solid var(--ink)}
+.col h3{font:700 var(--h3)/1.3 var(--text)}
+.col p{font:400 16px/1.6 var(--text);color:var(--ink)}
+.dots li{display:grid;grid-template-columns:10px 1fr;gap:14px;font:400 16px/1.55 var(--text)}
+.dots li::before{content:"";width:10px;height:10px;border-radius:999px;background:var(--brand);margin-top:7px}
+.acc{display:grid}
+.acc details{border-bottom:1px solid var(--line);border-radius:12px}
+.acc details[open]{background:var(--brand-tint)}
+.acc summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 16px;cursor:pointer;font:600 clamp(16px,1.35vw,18px)/1.35 var(--text);list-style:none}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .pill{flex:none;width:38px;height:38px;border-radius:999px;background:var(--brand);display:grid;place-items:center;font:800 15px/1 var(--title)}
+.acc summary .sign{flex:none;width:32px;height:32px;border-radius:999px;background:var(--brand);display:grid;place-items:center;font:700 18px/1 var(--text);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.acc details[open] summary .sign{transform:rotate(45deg)}
+.acc .inner{padding:0 16px 20px 68px;display:grid;gap:10px;font:400 16px/1.6 var(--text);color:var(--ink-soft)}
+.acc .inner li{display:grid;grid-template-columns:8px 1fr;gap:12px}
+.acc .inner li::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--brand);margin-top:7px}
+.faq .inner{padding-left:16px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap}
+.tab{padding:12px 22px;border-radius:999px;background:none;box-shadow:inset 0 0 0 2px var(--ink);font:700 15px/1 var(--text);cursor:pointer;border:0;transition:background .2s,color .2s,box-shadow .2s}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--brand);box-shadow:none}
+.tabpanel{background:#fff;border-radius:24px;padding:clamp(24px,3vw,40px);box-shadow:0 2px 8px rgba(10,10,10,.08),inset 0 0 0 1px var(--line)}
+.tabpanel p{max-width:62ch}
+.checks li{display:grid;grid-template-columns:32px 1fr;gap:18px;align-items:start;padding:18px 0;border-bottom:1px solid rgba(10,10,10,.2);font:400 var(--body)/1.6 var(--text)}
+.checks li::before{content:"✓";width:32px;height:32px;border-radius:999px;background:var(--ink);color:var(--brand);display:grid;place-items:center;font:700 15px/1 var(--text)}
+.glass{padding:clamp(24px,3vw,32px);display:grid;gap:14px;border-radius:24px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.glass li{display:grid;grid-template-columns:28px 1fr;gap:14px;font:400 16px/1.5 var(--text)}
+.glass li b{font:800 13px/28px var(--title);text-align:center;background:var(--brand);color:var(--ink);border-radius:999px;height:28px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px}
+.step{display:grid;gap:12px;align-content:start;padding-top:20px;border-top:2px solid var(--brand)}
+.step b{font:800 clamp(40px,4vw,64px)/1 var(--title);letter-spacing:-.04em;color:var(--brand)}
+.step h3{font:700 18px/1.3 var(--text)}
+.step p{font:400 16px/1.6 var(--text);color:#6B6B6B}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;padding-top:18px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;gap:20px;padding:clamp(24px,2.4vw,32px);border-radius:20px;background:#fff;box-shadow:0 2px 8px rgba(10,10,10,.08),inset 0 0 0 1px var(--line)}
+.plan .price{font:800 clamp(32px,3.4vw,48px)/1 var(--title);letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plan ul{display:grid;gap:12px;font:400 16px/1.5 var(--text)}
+.plan ul li{display:grid;grid-template-columns:8px 1fr;gap:12px}
+.plan ul li::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--brand);margin-top:7px}
+.plan .btn{margin-top:auto}
+.plan.top{background:linear-gradient(180deg,#FFDE3D,#FFD200 50%,#E5BC00);box-shadow:0 12px 32px rgba(10,10,10,.14),inset 0 0 0 2px var(--ink)}
+.plan.top ul li::before{background:var(--ink)}
+.plan.top .flag{position:absolute;top:-14px;left:28px;padding:6px 14px;border-radius:999px;background:var(--ink);color:var(--brand);font:700 12px/1.3 var(--text);letter-spacing:.07em;text-transform:uppercase}
+.plan.top .btn{background:var(--ink);color:#fff;box-shadow:none}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{padding:12px 18px;border-radius:999px;background:var(--brand);color:var(--ink);font:700 12px/1.3 var(--text);letter-spacing:.07em;text-transform:uppercase}
+.faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 clamp(24px,3vw,48px);align-items:start}
+.final{text-align:center}
+.final .wrap{display:grid;gap:26px;justify-items:center}
+.final h2{font:800 var(--h1)/1.05 var(--title);letter-spacing:-.02em;max-width:22ch}
+.final p{max-width:56ch}
+footer{background:var(--ink);color:#fff;padding:64px 0 28px}
+footer .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:32px}
+footer .fcol{display:grid;gap:10px;align-content:start;font:400 15px/1.6 var(--text);color:rgba(255,255,255,.72)}
+footer .fcol b{font:700 12px/1.3 var(--text);letter-spacing:.08em;text-transform:uppercase;color:#fff}
+footer .rule{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font:400 14px/1.6 var(--text);color:rgba(255,255,255,.5)}
+
+.hero-shot{position:relative;justify-self:center;width:100%;max-width:560px;aspect-ratio:4/3;border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#1C1C1C,#0A0A0A);display:grid;align-items:end;justify-items:center}
+.hero-shot::before{content:"";position:absolute;left:50%;top:52%;width:120%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,210,0,.5),rgba(255,210,0,0) 65%)}
+.hero-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.hero-shot .cap{position:absolute;left:16px;right:16px;bottom:12px;padding:9px 14px;border-radius:20px;background:rgba(10,10,10,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);color:#fff;font:500 14px/1.4 var(--text);text-align:center}
+.coach-shot{position:relative;align-self:start;border-radius:20px;overflow:hidden;background:#000000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);aspect-ratio:4/3;display:grid;place-items:center}
+.coach-shot::before{content:"";position:absolute;inset:0;background:#000000}
+.coach-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,4vw,56px);align-items:center}
+.cutout{justify-self:center;width:100%;max-width:440px}
+.cutout img{width:100%;height:auto;filter:drop-shadow(0 24px 48px rgba(10,10,10,.22))}
+.dark .cutout img{filter:drop-shadow(0 24px 48px rgba(0,0,0,.55))}
+
+.brand{display:inline-flex;align-items:center;gap:10px}
+.word{display:inline-flex;flex-direction:column;line-height:1;font-family:var(--title);font-weight:800;letter-spacing:.02em;color:var(--ink)}
+.word i{font-style:normal;font-size:clamp(15px,1.5vw,19px)}
+.word i+i{font-size:clamp(10px,1vw,12px);letter-spacing:.16em;font-weight:700;padding-top:3px}
+.dark .word,footer .word{color:#FFFFFF}
+.burger{display:none;width:48px;height:48px;border:0;border-radius:999px;background:var(--ink);cursor:pointer;place-items:center;padding:0}
+.burger span{display:block;width:20px;height:2px;background:var(--brand);margin:3px auto;border-radius:2px}
+.msheet{position:fixed;inset:0;z-index:60;background:#0A0A0A;display:none;padding:24px var(--gutter) calc(28px + env(safe-area-inset-bottom));grid-template-rows:auto 1fr auto;gap:24px}
+.msheet[data-open="1"]{display:grid}
+.msheet .top{display:flex;align-items:center;justify-content:space-between}
+.msheet .close{width:48px;height:48px;border:0;border-radius:999px;background:var(--brand);color:var(--ink);font:700 22px/1 var(--text);cursor:pointer}
+.msheet nav{display:grid;gap:8px;align-content:center}
+.msheet nav a{display:flex;align-items:center;min-height:56px;color:#FFFFFF;font:700 26px/1.2 var(--title);letter-spacing:-.01em}
+.fineprint{display:block;max-width:44ch;font:400 14px/1.5 var(--text);color:var(--ink-soft)}
+.dark .fineprint,.brandish .fineprint{color:rgba(10,10,10,.72)}
+.dark .fineprint{color:rgba(255,255,255,.72)}
+.court{position:absolute;inset:0;background:var(--brand);display:grid;place-items:center}
+.court i{position:absolute;background:rgba(255,255,255,.9)}
+.court .n{position:absolute;left:22px;top:16px;font:800 clamp(44px,7vw,76px)/1 var(--title);letter-spacing:-.05em;color:var(--ink)}
+section[id]{scroll-margin-top:88px}
+.mobar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:none}
+.mobar .btn{width:100%}
+@media(max-width:900px){.mobar{display:block}body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="Hello Padel Russia"><span class="word"><i>HELLO</i><i>PADEL</i></span><span class="tag">Russia</span></a>
+    <nav class="main">
+      <a href="#program">Программа</a><a href="#coach">Тренер</a><a href="#pricing">Тарифы</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn sm" href="https://t.me/russian_padel_bot">Забрать бесплатную главу</a>
+    <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="msheet"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="msheet" id="msheet" data-open="0" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="top">
+    <span class="brand"><span class="word"><i>HELLO</i><i>PADEL</i></span><span class="tag">Russia</span></span>
+    <button class="close" id="msclose" type="button" aria-label="Закрыть меню">✕</button>
+  </div>
+  <nav>
+    <a href="#program">Программа</a>
+    <a href="#coach">Тренер</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn" href="https://t.me/russian_padel_bot">Забрать бесплатную главу</a>
+</div>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-in">
+      <div class="stack" style="gap:26px">
+        <span class="badge">Официальная лицензия на дистрибуцию в РФ</span>
+        <h1>166 уроков падела на русском</h1>
+        <p class="lead">Полный курс Hello Padel Academy в переводе на русский. Метод Маури Андрини — двукратного чемпиона мира среди юниоров и главного тренера сборной Великобритании. От первого хвата до тактики в паре.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://t.me/russian_padel_bot">Купить доступ — от 2 990 ₽</a>
+          <a class="btn ghost" href="https://t.me/russian_padel_bot">Забрать главу бесплатно</a>
+        </div>
+        <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
+        <div class="note">Глава 3A «Бандеха» — 8 видео, 43 минуты. Без оплаты.</div>
+      </div>
+      <div class="hero-shot">
+        <div class="court" aria-hidden="true">
+          <i style="left:6%;right:6%;top:8%;height:3px"></i>
+          <i style="left:6%;right:6%;bottom:8%;height:3px"></i>
+          <i style="left:6%;top:8%;bottom:8%;width:3px"></i>
+          <i style="right:6%;top:8%;bottom:8%;width:3px"></i>
+          <i style="left:6%;right:6%;top:50%;height:3px"></i>
+          <i style="left:50%;top:8%;bottom:8%;width:3px"></i>
+          <span class="n">166</span>
+        </div>
+        <img src="photos/01.webp" width="760" height="813" fetchpriority="high" alt="Маури Андрини с ракеткой Hello Padel">
+        <span class="cap">Маури Андрини · автор методики · 9 модулей, 22 главы, 166 уроков</span>
+      </div>
+    </div>
+    <div class="stats">
+      <div><b>166</b><span>видеоуроков</span></div>
+      <div><b>9</b><span>модулей</span></div>
+      <div><b>22</b><span>главы</span></div>
+      <div><b>15+</b><span>часов</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <ul><li>Официальная лицензия</li><li>166 уроков</li><li>15+ часов материала</li><li>Всё на русском</li><li>35+ лет в паделе</li><li>Метод Hello Padel Academy</li><li>4000+ обученных тренеров</li><li>Официальная лицензия</li><li>166 уроков</li><li>15+ часов материала</li><li>Всё на русском</li><li>35+ лет в паделе</li><li>Метод Hello Padel Academy</li><li>4000+ обученных тренеров</li></ul>
+</div>
+
+<section class="sect">
+  <div class="wrap grid" style="gap:clamp(32px,4vw,48px)">
+    <div class="stack">
+      <p class="kick">Знакомо?</p>
+      <h2 class="h2">Ты играешь год, а прогресса нет</h2>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="num">1</div><h3>Мяч от стекла — и ты уже проиграл розыгрыш.</h3><p>Не понимаешь, куда встать и когда бить, поэтому отбиваешь как получится.</p></div>
+      <div class="card"><div class="num">2</div><h3>Бьёшь смэш, когда надо бандеху.</h3><p>И отдаёшь сетку сопернику вместе с очком.</p></div>
+      <div class="card"><div class="num">3</div><h3>Учишься по YouTube на испанском.</h3><p>Обрывки без системы, половина непонятна, порядок случайный.</p></div>
+      <div class="card"><div class="num">4</div><h3>Тренер занят, корты забиты.</h3><p>Персональные занятия дорогие, а группа идёт в чужом темпе.</p></div>
+      <div class="card"><div class="num">5</div><h3>Закрепляешь ошибки.</h3><p>Год игры без разбора техники — это год плохих привычек, которые потом переучивать дольше.</p></div>
+      <div class="card"><div class="num">6</div><h3>Не понимаешь, что именно исправлять.</h3><p>Чувствуешь, что теряешь очки, но не знаешь, в технике дело или в решении.</p></div>
+    </div>
+    <div class="split">
+      <div class="cutout"><img src="photos/08.webp" width="620" height="526" loading="lazy" alt="Маури Андрини разводит руками"></div>
+      <p class="lead">Курс закрывает все шесть пунктов. Ниже — как именно.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sect brandish" id="course">
+  <div class="wrap grid" style="gap:clamp(32px,4vw,48px)">
+    <div class="stack">
+      <p class="kick" style="color:var(--ink)">Решение</p>
+      <h2 class="h2">Не набор роликов, а система</h2>
+    </div>
+    <p class="body">Hello Padel Russia — это полная программа международной академии Hello Padel, переведённая на русский официально. 9 модулей ведут от истории и правил игры до тактики уровня «Совершенный игрок». Каждый удар разобран по шагам: подготовка, выполнение, куда направлять, какие ошибки допускают чаще всего.</p>
+    <div class="split">
+      <div class="cutout"><img src="photos/03.webp" width="660" height="762" loading="lazy" alt="Маури Андрини с логотипом Hello Padel"></div>
+      <p class="lead">Тот же материал, по которому академия учит тренеров в двадцати странах, — теперь на русском.</p>
+    </div>
+    <div class="cols">
+      <div class="col"><h3>Метод, а не мнение</h3><p>Методика Hello Padel Academy: сложное движение разбивается на простые шаги. Это же обучение проходят тренеры по всему миру.</p></div>
+      <div class="col"><h3>Всё по-русски</h3><p>166 уроков переведены и адаптированы. Никаких субтитров с автопереводом и догадок, что имел в виду тренер.</p></div>
+      <div class="col"><h3>Легально</h3><p>Права на перевод и публикацию получены напрямую у правообладателя. Это не сборка с торрентов, курс не пропадёт завтра.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sect dark" id="coach">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,4vw,56px);align-items:start">
+    <div class="coach-shot"><img src="photos/04.webp" width="900" height="653" loading="lazy" alt="Маури Андрини с ракеткой"></div>
+    <div class="grid" style="gap:24px;min-width:0">
+    <p class="kick" style="color:rgba(255,255,255,.6)">Автор методики</p>
+    <h2 class="h2">Маури Андрини</h2>
+    <p class="lead" style="color:rgba(255,255,255,.85);max-width:70ch">Аргентинский тренер и профессиональный игрок. В падел пришёл больше 35 лет назад: начал играть в 6 лет в Пеуахо — городе, откуда вышли многие легенды падела. В 14 лет дебютировал на мировой арене.</p>
+    <ul class="dots grid" style="gap:14px">
+      <li>Двукратный чемпион мира среди юниоров: до 14 лет (1998) и до 16 лет (2000)</li>
+      <li>№1 British Padel Tour четыре года подряд, 2013–2016</li>
+      <li>№92 в мировом рейтинге World Padel Tour в 2017 году</li>
+      <li>Главный тренер сборной Великобритании: 3-е место на юниорском Кубке мира (2015), 8-е среди взрослых (2016)</li>
+      <li>Официальный англоязычный комментатор World Padel Tour</li>
+      <li>Основатель Hello Padel Academy (Лондон, 2013): курсы прошли 4000+ тренеров, включая направление wheelchair padel</li>
+    </ul>
+    <p class="body" style="color:rgba(255,255,255,.6)">Курс в этом канале — его метод, переведённый на русский.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap grid" style="gap:clamp(32px,4vw,48px)">
+    <div class="stack">
+      <p class="kick">За курсом стоит академия</p>
+      <h2 class="h2">Hello Padel Academy</h2>
+    </div>
+    <p class="body">История началась в 2013 году в Лондоне: Маурисио Андрини снимал домашние видеоуроки прямо на корте. Ролики разошлись по сети и превратились в образовательную платформу. HPA стала первой школой в мире, которая перевела профессиональную аналитику падела на английский — до этого сильный контент существовал только на испанском. Сегодня у академии штаб-квартиры в Испании, Нидерландах и Бельгии.</p>
+    <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
+      <div class="card"><h3 style="font-family:var(--title);font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em">50 000+</h3><p>игроков в мобильном приложении академии</p></div>
+      <div class="card"><h3 style="font-family:var(--title);font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em">4000+</h3><p>тренеров прошли сертификацию HPA</p></div>
+      <div class="card"><h3 style="font-family:var(--title);font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em">20+</h3><p>стран, где работают кэмпы и филиалы</p></div>
+      <div class="card"><h3 style="font-family:var(--title);font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em">0.0–10.0</h3><p>собственная шкала уровня игрока</p></div>
+      <div class="card"><h3 style="font-family:var(--title);font-size:clamp(19px,1.7vw,24px);letter-spacing:-.02em">«Метод Маури Андрини»</h3><p>сложные движения разбиваются на простые шаги</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="program" style="background:var(--off)">
+  <div class="wrap grid" style="gap:clamp(28px,3vw,40px)">
+    <div class="stack">
+      <p class="kick">Программа</p>
+      <h2 class="h2">9 модулей, 22 главы, 166 уроков</h2>
+      <p class="body" style="color:var(--ink-soft)">Разверни модуль, чтобы увидеть главы.</p>
+    </div>
+    <div class="acc" id="modules">
+      <details open><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">1</span><span>Модуль 1 — Добро пожаловать в падел · 23 урока</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>1A. Фундаментализм — сила знаний (12 видео): история игры, правила, экипировка, выбор ракетки, первая техника</li><li>1B. Играй умно — построй свою игру (11 видео): тактика, работа с хватом, разбор частых ошибок</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">2</span><span>Модуль 2 — Подача и приём · 13 уроков</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>2A. Контроль подачи (6 видео): техника, прогрессия, частые ошибки</li><li>2B. Приём подачи (7 видео): позиция, работа ног, приём от стен, принятие решений</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">3</span><span>Модуль 3 — Бандеха, вибора, смэш · 21 урок</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>3A. Бандеха (8 видео): удар у сетки шаг за шагом</li><li>3B. Вибора (5 видео): прогрессия и тактика</li><li>3C. Смэш (8 видео): силовой и кик-смэш</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">4</span><span>Модуль 4 — Игра у сетки · 11 уроков</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>4A. Базовый уровень (6 видео): позиция, частые ошибки волея</li><li>4B. Высокий уровень (5 видео): дроп-волей, форхенд-волей</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">5</span><span>Модуль 5 — Игра с задней линии корта · 36 уроков</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>5A. Форхенд и бэкхенд (19 видео) — самый подробный блок курса</li><li>5B. Переход от защиты в атаку (7 видео)</li><li>5C. Свечка (5 видео)</li><li>5D. Чикита (5 видео)</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">6</span><span>Модуль 6 — Стены под контролем · 31 урок</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>6A. Удары от стен — контроль (11 видео)</li><li>6B. Бахада (5 видео)</li><li>6C. Задняя стена (5 видео)</li><li>6D. Боковое стекло (5 видео)</li><li>6E. Двойное стекло (5 видео)</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">7</span><span>Модуль 7 — Забота о своём теле · 10 уроков</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>Травмы, профилактика, физическая подготовка</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">8</span><span>Модуль 8 — Средний уровень · 10 уроков</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>8A. Работа 1 на 1 (6 видео)</li><li>8B. Групповая тренировка (4 видео)</li></ul></details>
+      <details><summary><span style="display:flex;gap:14px;align-items:center;min-width:0"><span class="pill">9</span><span>Модуль 9 — Совершенный уровень · 11 уроков</span></span><span class="sign" aria-hidden="true">+</span></summary><ul class="inner"><li>9A. Работа 1 на 1 (7 видео)</li><li>9B. Групповая тренировка (4 видео)</li></ul></details>
+    </div>
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+      <p class="body" style="font-weight:600">Итого: 166 уроков, более 15 часов, всё на русском языке.</p>
+      <div class="grid" style="gap:10px;justify-items:start">
+        <a class="btn" href="https://t.me/russian_padel_bot">Купить доступ</a>
+        <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap grid" style="gap:clamp(24px,3vw,36px)">
+    <div class="stack">
+      <p class="kick">Сегменты</p>
+      <h2 class="h2">Рейтинг от 1 до 5 — курс твой</h2>
+      <p class="lead">Дело не в уровне, а в том, что каждый находит в курсе своё. Выбери себя:</p>
+    </div>
+    <div class="tabs" id="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true" data-i="0">Новичок</button><button class="tab" role="tab" aria-selected="false" data-i="1">Средний уровень</button><button class="tab" role="tab" aria-selected="false" data-i="2">Опытный игрок</button><button class="tab" role="tab" aria-selected="false" data-i="3">Тренер</button></div>
+    <div class="tabpanel"><p class="lead" id="tabtext">Разберёшься с базой: хват, стойка, структура корта, правила игры, первые удары — без плохих привычек, которые потом сложно исправить. Начинать стоит с модуля 1 «Фундаментализм», дальше подача и приём.</p></div>
+    <p class="body">Курс устроен так, что каждый видит собственные ошибки — в технике удара, в позиции на корте, в решениях по ходу розыгрыша — и получает чёткий ответ, что именно исправить.</p>
+  </div>
+</section>
+
+<section class="sect brandish">
+  <div class="wrap grid" style="gap:clamp(24px,3vw,36px)">
+    <div class="stack">
+      <p class="kick" style="color:var(--ink)">Результат</p>
+      <h2 class="h2">Что ты начнёшь делать на корте</h2>
+    </div>
+    <ul class="checks">
+      <li>Перестанешь бить смэш там, где нужна бандеха, и удерживать сетку станет легче</li>
+      <li>Начнёшь выходить из-под мяча у задней стены, а не отбивать в стекло</li>
+      <li>Поймёшь, куда направлять удар, а не просто попадать в корт</li>
+      <li>Уберёшь ошибки хвата и стойки, из-за которых теряется контроль</li>
+      <li>Научишься переводить розыгрыш из защиты в атаку осознанно</li>
+      <li>Перестанешь тренироваться вслепую: будет понятно, что отрабатывать в следующий раз</li>
+    </ul>
+    <p class="body">Курс даёт технику и тактику. Прогресс на корте зависит от того, сколько ты играешь.</p>
+  </div>
+</section>
+
+<section class="sect dark">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,4vw,48px);align-items:start">
+    <div class="grid" style="gap:22px">
+      <p class="kick" style="color:rgba(255,255,255,.6)">Без оплаты</p>
+      <h2 class="h2">Забери целую главу курса</h2>
+      <p class="lead" style="color:rgba(255,255,255,.85)">Глава 3A «Бандеха» — 8 видео, 43 минуты. Самый частый удар у сетки: подготовка и техника, как направлять удар в нужную зону, принятие решений и разбор частых ошибок. Это полноценная глава из курса, а не нарезка.</p>
+      <div class="grid" style="gap:12px;justify-items:start">
+        <a class="btn" href="https://t.me/russian_padel_bot">Забрать главу в боте</a>
+        <span style="font:400 15px/1.5 var(--text);color:rgba(255,255,255,.7)">Открывается в Telegram, @russian_padel_bot. Оплата не нужна.</span>
+      </div>
+    </div>
+    <div class="grid" style="gap:20px">
+      <div class="cutout"><img src="photos/07.webp" width="660" height="780" loading="lazy" alt="Маури Андрини готовится к удару"></div>
+      <ol class="glass">
+        <li><b>1</b>Осваиваем бандеху — шаг за шагом</li>
+        <li><b>2</b>Бандеха — подготовка и выполнение удара</li>
+        <li><b>3</b>Бандеха — твой лучший друг у сетки</li>
+        <li><b>4</b>Потренируйся сам — бандеха и высокие волеи</li>
+        <li><b>5</b>Бандеха — принятие решений, умный выбор, отличный результат</li>
+        <li><b>6</b>Игрок справа — как направлять бандеху в стратегические зоны</li>
+        <li><b>7</b>Кик-бандеха — техника и контроль вращения</li>
+        <li><b>8</b>Не провали бандеху — частые ошибки</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap grid" style="gap:clamp(32px,4vw,48px)">
+    <div class="stack">
+      <p class="kick">Как это работает</p>
+      <h2 class="h2">Четыре шага до первого урока</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><b>1</b><h3>Выбираешь тариф</h3><p>месяц, два месяца или навсегда.</p></div>
+      <div class="step"><b>2</b><h3>Оплачиваешь в боте</h3><p>@russian_padel_bot, оплата разовая.</p></div>
+      <div class="step"><b>3</b><h3>Бот открывает доступ</h3><p>сразу после оплаты приходит инвайт в закрытый канал.</p></div>
+      <div class="step"><b>4</b><h3>Смотришь по маршруту</h3><p>в начале канала закреплено оглавление со ссылками на каждый модуль и главу.</p></div>
+    </div>
+    <p class="body">Смотреть можно с телефона, планшета или компьютера — везде, где есть Telegram.</p>
+  </div>
+</section>
+
+<section class="sect" id="pricing" style="background:var(--off)">
+  <div class="wrap grid" style="gap:clamp(36px,4vw,56px)">
+    <div class="stack">
+      <p class="kick">Доступ</p>
+      <h2 class="h2">Выбери формат</h2>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <p class="kick">Месяц</p>
+        <div class="price">2 990 ₽</div>
+        <ul><li>Все 9 модулей и 166 уроков</li><li>Доступ 30 дней</li><li>Оглавление и навигация по главам</li></ul>
+        <a class="btn" href="https://t.me/russian_padel_bot">Купить</a>
+        <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
+      </div>
+      <div class="plan top">
+        <span class="flag">Выбирают чаще всего</span>
+        <p class="kick" style="color:var(--ink)">Навсегда</p>
+        <div class="price">4 990 ₽</div>
+        <ul><li>Всё из предыдущих тарифов</li><li>Доступ без ограничения по времени</li><li>Новые уроки от правообладателя добавляются в модули</li><li>Возвращаешься к разбору удара перед любой игрой</li></ul>
+        <a class="btn" href="https://t.me/russian_padel_bot">Купить навсегда</a>
+        <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
+      </div>
+      <div class="plan">
+        <p class="kick">Два месяца</p>
+        <div class="price">3 990 ₽</div>
+        <ul><li>Всё из тарифа «Месяц»</li><li>Доступ 60 дней</li><li>Хватит, чтобы пройти курс без спешки</li></ul>
+        <a class="btn" href="https://t.me/russian_padel_bot">Купить</a>
+        <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
+      </div>
+    </div>
+    <p class="body">Разница между месяцем и полным доступом — 2 000 ₽. Один тариф оплачивается один раз, автосписаний нет.</p>
+  </div>
+</section>
+
+<section class="sect dark">
+  <div class="wrap grid" style="gap:26px">
+    <h2 class="h2">Это официальный курс, а не пиратка</h2>
+    <p class="body" style="color:rgba(255,255,255,.85)">Права на перевод и публикацию Hello Padel на территории РФ получены напрямую у правообладателя. Курс не исчезнет из-за жалобы, доступ не отключат, а перевод сделан не автоматическим субтитром, а под контролем академии.</p>
+    <div class="chips">
+      <span class="chip">Лицензия на дистрибуцию в РФ</span>
+      <span class="chip">Официальный перевод всех 166 уроков</span>
+      <span class="chip">Структура соответствует программе Hello Padel</span>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="faq">
+  <div class="wrap grid" style="gap:clamp(24px,3vw,36px)">
+    <h2 class="h2">Частые вопросы</h2>
+    <div class="faq-grid acc faq" itemscope itemtype="https://schema.org/FAQPage">
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Что такое Hello Padel Russia?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Официальный курс по паделу от Hello Padel, переведённый на русский язык. У нас лицензия на дистрибуцию курса на территории РФ — контент не пиратский, права на перевод и публикацию получены напрямую от правообладателя.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Из чего состоит курс?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">9 модулей, 22 главы и 166 видеоуроков — от базовой техники и правил игры до продвинутых связок для игроков высокого уровня. Главы разбиты по темам: «Форхенд и бэкхенд», «Игра от стен», «Забота о своём теле» и так далее, чтобы легко находить нужное.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Как получить доступ?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Через бота @russian_padel_bot. Выбираешь тариф, оплачиваешь — бот сразу открывает доступ к закрытому каналу с полным курсом. Оплата разовая: ты платишь один раз за выбранный срок, никаких автосписаний.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Как ориентироваться в 166 видео и не потеряться?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">В начале канала закреплено оглавление со ссылками на каждый модуль и главу. Нажимаешь нужный пункт — Telegram переносит к соответствующим урокам. Плюс бот подскажет, с каких уроков начать именно тебе, исходя из твоего уровня.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Можно ли делиться доступом с друзьями?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Нет. Доступ персональный, для личного использования. Пересылка видео третьим лицам запрещена условиями доступа.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">На каких устройствах смотреть?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">На любых, где установлен Telegram: телефон, планшет, компьютер — приложение или веб-версия. Достаточно быть участником канала.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Видео на русском?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Да, все 166 уроков переведены на русский. Оригинальный курс был на английском.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Что делать, если видео не воспроизводится?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Чаще всего помогает обновить Telegram до последней версии или переключиться между Wi-Fi и мобильным интернетом. Если не помогло — напиши в бота, разберёмся.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Что будет, когда закончится оплаченный срок?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Доступ к закрытому каналу закроется. Продлить можно в боте в любой момент, либо перейти на тариф «навсегда» и больше к этому вопросу не возвращаться.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Будет ли курс дополняться?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Структура курса соответствует оригинальной программе Hello Padel. Если правообладатель выпустит новые уроки, они будут переведены и добавлены в соответствующие модули.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Я совсем новичок, не рано ли?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Не рано — наоборот. Модуль 1 «Фундаментализм» начинается с правил, экипировки, выбора ракетки и первого хвата. Начать с курса дешевле, чем потом переучивать плохие привычки.</p></div></details>
+        <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><summary><span itemprop="name">Чем это лучше занятий с тренером?</span><span class="sign" aria-hidden="true">+</span></summary><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="inner" itemprop="text">Это не замена тренеру, а то, чего тренировка не даёт: возможность пересмотреть разбор удара сколько угодно раз, в своём темпе, перед конкретной игрой. Многие берут курс параллельно с занятиями.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="sect brandish final">
+  <div class="wrap">
+    <div class="cutout" style="max-width:380px"><img src="photos/06.webp" width="620" height="529" loading="lazy" alt="Маури Андрини указывает на голову"></div>
+    <h2>166 уроков ждут. Начни с бесплатной главы</h2>
+    <p class="lead">Забери главу «Бандеха» — 8 видео, 43 минуты, без оплаты. Понравится метод — откроешь полный курс прямо в боте.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn dark" href="https://t.me/russian_padel_bot">Забрать бесплатную главу</a>
+      <a class="btn ghost" href="https://t.me/russian_padel_bot">Купить полный доступ — 4 990 ₽</a>
+    </div>
+    <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="brand" href="#top" aria-label="Hello Padel Russia"><span class="word"><i>HELLO</i><i>PADEL</i></span><span class="tag">Russia</span></a>
+        <span>Официальный русский перевод курса Hello Padel. Лицензия на дистрибуцию в РФ.</span>
+      </div>
+      <div class="fcol"><b>Навигация</b><a href="#program">Программа</a><a href="#coach">Тренер</a><a href="#pricing">Тарифы</a><a href="#faq">FAQ</a></div>
+      <div class="fcol"><b>Связь</b><a href="https://t.me/HELLO_PADEL_RUSSIA">Telegram-канал @HELLO_PADEL_RUSSIA</a><a href="https://t.me/russian_padel_bot">Бот @russian_padel_bot</a></div>
+      <div class="fcol"><b>Правовое</b><span>Политика конфиденциальности</span><span>Публичная оферта</span><span>Условия доступа</span></div>
+    </div>
+    <div class="rule">© 2026 Hello Padel Russia. Hello Padel и Hello Padel Academy — товарные знаки правообладателя, используются по лицензии.</div>
+  </div>
+</footer>
+
+<div class="mobar"><a class="btn" href="https://t.me/russian_padel_bot">Купить доступ — от 2 990 ₽</a></div>
+
+<script>
+(function(){
+  var sheet=document.getElementById('msheet'),b=document.getElementById('burger'),c=document.getElementById('msclose');
+  function open(){sheet.dataset.open='1';b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+  function close(){sheet.dataset.open='0';b.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  b.addEventListener('click',open); c.addEventListener('click',close);
+  sheet.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+
+  var tabs=document.getElementById('tabs'),tabtext=document.getElementById('tabtext');
+  var SEGT=["Разберёшься с базой: хват, стойка, структура корта, правила игры, первые удары — без плохих привычек, которые потом сложно исправить. Начинать стоит с модуля 1 «Фундаментализм», дальше подача и приём.","Получишь разбор конкретных ударов — бандеха, вибора, смэш, игра от стен — и поймёшь, где именно технически теряешь очки. Модули 3, 5 и 6 закроют большую часть твоих потерь.","Заберёшь тактику: куда и когда бить, как читать ситуацию на корте, как строить атаку и защищаться в паре. Модули 8 и 9 — работа 1 на 1 и групповая тренировка на совершенном уровне.","Получишь глубокое понимание техники и тактики, разложенное по шагам, — удобно объяснять ученикам своими словами. Это та же методика, по которой HPA сертифицировала 4000+ тренеров."];
+  tabs.addEventListener('click',function(e){
+    var t=e.target.closest('.tab'); if(!t) return;
+    tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t);});
+    tabtext.textContent=SEGT[t.dataset.i];
+  });
+
+  var bar=document.querySelector('.mobar'),fin=document.querySelector('.final');
+  function bars(){ if(!fin) return; var r=fin.getBoundingClientRect();
+    bar.style.transform = r.top < window.innerHeight - 80 ? 'translateY(140%)' : 'none';
+    bar.style.transition='transform .3s cubic-bezier(.16,1,.3,1)'; }
+  window.addEventListener('scroll',bars,{passive:true}); bars();
+})();
+</script>
+</body>
+</html>
