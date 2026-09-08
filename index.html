@@ -155,7 +155,8 @@ footer .rule{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,
 .hero-shot::before{content:"";position:absolute;left:50%;top:52%;width:120%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,210,0,.5),rgba(255,210,0,0) 65%)}
 .hero-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
 .hero-shot .cap{position:absolute;left:16px;right:16px;bottom:12px;padding:9px 14px;border-radius:20px;background:rgba(10,10,10,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);color:#fff;font:500 14px/1.4 var(--text);text-align:center}
-.coach-shot{position:relative;align-self:start;border-radius:20px;overflow:hidden;background:#000000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);aspect-ratio:4/3;display:grid;place-items:center}
+.coach-shot{position:relative;align-self:start;border-radius:20px;overflow:hidden;background:#000000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);aspect-ratio:3/4;display:grid;place-items:center}
+@media(min-width:901px){.coach-shot{aspect-ratio:4/5}}
 .coach-shot::before{content:"";position:absolute;inset:0;background:#000000}
 .coach-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,4vw,56px);align-items:center}
@@ -181,7 +182,55 @@ footer .rule{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,
 .dark .fineprint{color:rgba(255,255,255,.72)}
 .court{position:absolute;inset:0;background:var(--brand);display:grid;place-items:center}
 .court i{position:absolute;background:rgba(255,255,255,.9)}
+.court .ball{position:absolute;right:9%;top:14%;width:clamp(26px,4vw,42px);aspect-ratio:1;border-radius:999px;background:#EFFF4A;box-shadow:inset 0 0 0 2px rgba(10,10,10,.18)}
+.court .ball::before{content:"";position:absolute;inset:16% 30%;border-radius:999px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.75)}
 .court .n{position:absolute;left:22px;top:16px;font:800 clamp(44px,7vw,76px)/1 var(--title);letter-spacing:-.05em;color:var(--ink)}
+
+.vwrap{position:relative}
+.vscroll{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding:4px 0 8px;scrollbar-width:none}
+.vscroll::-webkit-scrollbar{display:none}
+.vcard{position:relative;flex:none;width:280px;aspect-ratio:9/16;border-radius:20px;overflow:hidden;scroll-snap-align:center;background:var(--brand);cursor:pointer}
+@media(max-width:900px){.vcard{width:72vw}}
+.vcard .fall{position:absolute;inset:0;background:var(--brand)}
+.vcard .fall i{position:absolute;background:rgba(255,255,255,.85)}
+.vcard img,.vcard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vcard .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.35) 0 22%,rgba(10,10,10,0) 45%,rgba(10,10,10,.72))}
+.vcard .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56px;height:56px;border:0;border-radius:999px;background:var(--brand);color:var(--ink);font:700 20px/1 var(--text);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(10,10,10,.35)}
+.vcard[data-playing="1"] .play{display:none}
+.vcard .cap{position:absolute;left:16px;right:16px;bottom:16px;color:#fff;font:600 16px/1.35 var(--text)}
+.vcard .cap a{display:inline-block;margin-top:6px;color:var(--brand);font:600 13px/1.3 var(--text);text-decoration:underline;text-underline-offset:3px}
+.vcard .badge-dur{position:absolute;right:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(10,10,10,.6);color:#fff;font:500 13px/1 var(--text)}
+.vcard .snd{position:absolute;right:12px;top:12px;width:40px;height:40px;border:0;border-radius:999px;background:rgba(10,10,10,.55);color:#fff;font:600 14px/1 var(--text);display:grid;place-items:center;cursor:pointer}
+.varrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:999px;background:var(--brand);color:var(--ink);font:700 20px/1 var(--text);cursor:pointer;display:none;place-items:center;z-index:2;box-shadow:0 8px 24px rgba(10,10,10,.4)}
+.varrow.prev{left:-8px}
+.varrow.next{right:-8px}
+@media(min-width:901px){.varrow{display:grid}}
+.vdots{display:flex;gap:8px;justify-content:center;margin-top:18px}
+.vdots span{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.28)}
+.vdots span[data-on="1"]{background:var(--brand)}
+.coachgrid{display:grid;gap:clamp(28px,4vw,56px);align-items:start;grid-template-columns:1fr}
+@media(min-width:901px){.coachgrid{grid-template-columns:minmax(0,40%) minmax(0,1fr)}}
+.coach-shot .plate{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:var(--brand);color:var(--ink);font:700 15px/1.35 var(--text);z-index:2}
+.wide{border-radius:20px;overflow:hidden}
+.wide img{width:100%;height:auto;display:block}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px}
+.trust .n{font:800 clamp(38px,4.4vw,56px)/1 var(--title);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.trust p{font:500 16px/1.5 var(--text);color:var(--ink-soft)}
+.args{display:grid;gap:12px}
+.arg{display:grid;grid-template-columns:32px 1fr;gap:16px;align-items:center;padding:18px 20px;border-radius:20px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font:500 16px/1.5 var(--text)}
+.arg::before{content:"✓";width:32px;height:32px;border-radius:999px;background:var(--brand);color:var(--ink);display:grid;place-items:center;font:700 15px/1 var(--text)}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+@media(max-width:900px){.revs{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}.revs::-webkit-scrollbar{display:none}.rev{flex:none;width:82vw;scroll-snap-align:center}}
+.rev{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:20px;padding:32px;box-shadow:0 2px 8px rgba(10,10,10,.08),inset 0 0 0 1px var(--line);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+.rev:hover{transform:translateY(-4px);box-shadow:0 2px 8px rgba(10,10,10,.08),inset 0 0 0 1px var(--ink)}
+.rev .q{font:800 64px/.7 var(--title);color:var(--brand);margin-bottom:8px}
+.rev .txt{font:400 18px/1.6 var(--text);color:var(--ink)}
+.rev .line{height:1px;background:var(--line);margin:24px 0}
+.rev .who{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;margin-top:auto}
+.rev .av{width:44px;height:44px;border-radius:999px;background:var(--brand);display:grid;place-items:center;font:800 18px/1 var(--title);color:var(--ink)}
+.rev .nm{font:700 16px/1.3 var(--text)}
+.rev .meta{font:400 14px/1.35 var(--text);color:var(--ink-soft)}
+.rev .attr{margin-top:16px;font:400 13px/1.4 var(--text);color:#9A9A9A}
 section[id]{scroll-margin-top:88px}
 .mobar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:none}
 .mobar .btn{width:100%}
@@ -238,6 +287,7 @@ section[id]{scroll-margin-top:88px}
           <i style="right:6%;top:8%;bottom:8%;width:3px"></i>
           <i style="left:6%;right:6%;top:50%;height:3px"></i>
           <i style="left:50%;top:8%;bottom:8%;width:3px"></i>
+          <span class="ball"></span>
           <span class="n">166</span>
         </div>
         <img src="01.webp" width="760" height="813" fetchpriority="high" alt="Маури Андрини с ракеткой Hello Padel">
@@ -298,8 +348,8 @@ section[id]{scroll-margin-top:88px}
 </section>
 
 <section class="sect dark" id="coach">
-  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,4vw,56px);align-items:start">
-    <div class="coach-shot"><img src="04.webp" width="900" height="653" loading="lazy" alt="Маури Андрини с ракеткой"></div>
+  <div class="wrap coachgrid">
+    <div class="coach-shot"><span class="plate">Маури Андрини · основатель Hello Padel Academy</span><img src="04.webp" width="900" height="653" loading="lazy" alt="Маури Андрини с ракеткой"></div>
     <div class="grid" style="gap:24px;min-width:0">
     <p class="kick" style="color:rgba(255,255,255,.6)">Автор методики</p>
     <h2 class="h2">Маури Андрини</h2>
@@ -324,6 +374,7 @@ section[id]{scroll-margin-top:88px}
       <h2 class="h2">Hello Padel Academy</h2>
     </div>
     <p class="body">История началась в 2013 году в Лондоне: Маурисио Андрини снимал домашние видеоуроки прямо на корте. Ролики разошлись по сети и превратились в образовательную платформу. HPA стала первой школой в мире, которая перевела профессиональную аналитику падела на английский — до этого сильный контент существовал только на испанском. Сегодня у академии штаб-квартиры в Испании, Нидерландах и Бельгии.</p>
+    <div class="wide"><img src="03.webp" alt="Маури Андрини с ракеткой Hello Padel" width="660" height="762" loading="lazy"></div>
     <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
       <div class="card"><h3 style="font-family:var(--title);font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em">50 000+</h3><p>игроков в мобильном приложении академии</p></div>
       <div class="card"><h3 style="font-family:var(--title);font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em">4000+</h3><p>тренеров прошли сертификацию HPA</p></div>
@@ -358,6 +409,101 @@ section[id]{scroll-margin-top:88px}
         <a class="btn" href="https://t.me/russian_padel_bot">Купить доступ</a>
         <span class="fineprint">Откроется бот в Telegram. Оплата разовая, автосписаний нет. Доступ приходит сразу после оплаты.</span>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sect dark" id="shorts">
+  <div class="wrap grid" style="gap:clamp(28px,3vw,40px)">
+    <div class="stack">
+      <p class="kick" style="color:rgba(255,255,255,.6)">Видео</p>
+      <h2 class="h2">Восемь советов, которые можно попробовать сегодня</h2>
+      <p class="lead" style="color:rgba(255,255,255,.85);max-width:70ch">Это короткие ролики из наших соцсетей — один совет за минуту. В курсе уроки полноценные: от 2 до 15 минут каждый, 166 штук, разложенных по порядку от первого хвата до тактики в паре.</p>
+    </div>
+    <div class="vwrap">
+      <button class="varrow prev" type="button" aria-label="Назад">‹</button>
+      <div class="vscroll" id="vscroll">
+<article class="vcard" data-src="video/01.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/01.webp" alt="Хват: с чего всё начинается" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Хват: с чего всё начинается">▶</button>
+<span class="badge-dur">1:07</span>
+<div class="cap">Хват: с чего всё начинается</div>
+</article>
+<article class="vcard" data-src="video/02.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/02.webp" alt="Бандеха начинается раньше, чем кажется" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Бандеха начинается раньше, чем кажется">▶</button>
+<span class="badge-dur">0:40</span>
+<div class="cap">Бандеха начинается раньше, чем кажется<a href="#free">Полная глава про бандеху — бесплатно</a></div>
+</article>
+<article class="vcard" data-src="video/03.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/03.webp" alt="Почему ты опаздываешь на волее" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Почему ты опаздываешь на волее">▶</button>
+<span class="badge-dur">0:39</span>
+<div class="cap">Почему ты опаздываешь на волее</div>
+</article>
+<article class="vcard" data-src="video/04.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/04.webp" alt="Удар от задней стенки" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Удар от задней стенки">▶</button>
+<span class="badge-dur">0:51</span>
+<div class="cap">Удар от задней стенки</div>
+</article>
+<article class="vcard" data-src="video/05.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/05.webp" alt="Смэш: три способа" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Смэш: три способа">▶</button>
+<span class="badge-dur">0:43</span>
+<div class="cap">Смэш: три способа</div>
+</article>
+<article class="vcard" data-src="video/06.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/06.webp" alt="Где стоять в защите" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Где стоять в защите">▶</button>
+<span class="badge-dur">0:45</span>
+<div class="cap">Где стоять в защите</div>
+</article>
+<article class="vcard" data-src="video/07.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/07.webp" alt="Подача: темп важнее силы" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Подача: темп важнее силы">▶</button>
+<span class="badge-dur">0:48</span>
+<div class="cap">Подача: темп важнее силы</div>
+</article>
+<article class="vcard" data-src="video/08.mp4" data-playing="0">
+<div class="fall" aria-hidden="true"><i style="left:8%;right:8%;top:8%;height:2px"></i><i style="left:8%;right:8%;bottom:8%;height:2px"></i><i style="left:8%;top:8%;bottom:8%;width:2px"></i><i style="right:8%;top:8%;bottom:8%;width:2px"></i><i style="left:8%;right:8%;top:50%;height:2px"></i></div>
+<img src="video/08.webp" alt="Когда идти вперёд" width="720" height="1280" loading="lazy" onerror="this.remove()">
+<div class="shade"></div>
+<button class="snd" type="button" aria-label="Включить звук">🔇</button>
+<button class="play" type="button" aria-label="Смотреть: Когда идти вперёд">▶</button>
+<span class="badge-dur">0:36</span>
+<div class="cap">Когда идти вперёд</div>
+</article>
+      </div>
+      <button class="varrow next" type="button" aria-label="Вперёд">›</button>
+      <div class="vdots" id="vdots" aria-hidden="true"><span data-on="1"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <p style="font:500 18px/1.55 var(--text);color:#9A9A9A;text-align:center;max-width:70ch;margin:0 auto">Здесь — минута на совет. В курсе — более 15 часов разбора: каждый удар от подготовки до частых ошибок.</p>
+    <div class="grid" style="gap:14px;justify-items:center">
+      <p class="body" style="color:rgba(255,255,255,.85)">Ещё 20 разборов выложены в канале</p>
+      <a class="btn ghost" style="box-shadow:inset 0 0 0 2px #fff;color:#fff" href="https://t.me/HELLO_PADEL_RUSSIA">Открыть канал</a>
     </div>
   </div>
 </section>
@@ -482,6 +628,52 @@ section[id]{scroll-margin-top:88px}
   </div>
 </section>
 
+
+<section class="sect" id="trust" style="background:var(--off)">
+  <div class="wrap grid" style="gap:clamp(32px,4vw,48px)">
+    <div class="stack">
+      <p class="kick">Доверие</p>
+      <h2 class="h2">Почему этому курсу можно верить</h2>
+    </div>
+    <div class="trust">
+      <div><div class="n">50 000+</div><p>игроков в приложении Hello Padel Academy</p></div>
+      <div><div class="n">4 000+</div><p>тренеров прошли сертификацию академии</p></div>
+      <div><div class="n">20+</div><p>стран, где работают кэмпы и филиалы</p></div>
+      <div><div class="n">2013</div><p>год основания академии в Лондоне</p></div>
+    </div>
+    <div class="args">
+      <div class="arg">Лицензия на дистрибуцию в РФ, полученная у правообладателя</div>
+      <div class="arg">Методика, по которой академия сертифицирует тренеров с 2013 года</div>
+      <div class="arg">Перевод всех 166 уроков, а не выборочных фрагментов</div>
+    </div>
+    <h3 class="h2" style="font-size:clamp(22px,2.6vw,32px)">Что говорят игроки</h3>
+    <p class="body" style="color:var(--ink-soft);text-align:center;max-width:68ch;margin:0 auto">Курс Hello Padel преподают по всему миру. Ниже — отзывы игроков о международной версии; русская версия — тот же курс в переводе.</p>
+    <div class="revs">
+      <div class="rev">
+        <div class="q">«</div>
+        <p class="txt">[ВСТАВИТЬ ОТЗЫВ]</p>
+        <div class="line"></div>
+        <div class="who"><span class="av">?</span><span><span class="nm">[ИМЯ]</span><br><span class="meta">[СТРАНА · УРОВЕНЬ]</span></span></div>
+        <p class="attr">Отзыв о международной версии курса Hello Padel</p>
+      </div>
+      <div class="rev">
+        <div class="q">«</div>
+        <p class="txt">[ВСТАВИТЬ ОТЗЫВ]</p>
+        <div class="line"></div>
+        <div class="who"><span class="av">?</span><span><span class="nm">[ИМЯ]</span><br><span class="meta">[СТРАНА · УРОВЕНЬ]</span></span></div>
+        <p class="attr">Отзыв о международной версии курса Hello Padel</p>
+      </div>
+      <div class="rev">
+        <div class="q">«</div>
+        <p class="txt">[ВСТАВИТЬ ОТЗЫВ]</p>
+        <div class="line"></div>
+        <div class="who"><span class="av">?</span><span><span class="nm">[ИМЯ]</span><br><span class="meta">[СТРАНА · УРОВЕНЬ]</span></span></div>
+        <p class="attr">Отзыв об этом курсе</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sect" id="faq">
   <div class="wrap grid" style="gap:clamp(24px,3vw,36px)">
     <h2 class="h2">Частые вопросы</h2>
@@ -554,6 +746,34 @@ section[id]{scroll-margin-top:88px}
     bar.style.transform = r.top < window.innerHeight - 80 ? 'translateY(140%)' : 'none';
     bar.style.transition='transform .3s cubic-bezier(.16,1,.3,1)'; }
   window.addEventListener('scroll',bars,{passive:true}); bars();
+
+(function(){
+  var sc=document.getElementById('vscroll'); if(!sc) return;
+  var dots=document.getElementById('vdots').children, cur=null;
+  function stop(){ if(cur){ var v=cur.querySelector('video'); if(v) v.pause(); cur.dataset.playing='0'; } }
+  sc.addEventListener('click',function(e){
+    var card=e.target.closest('.vcard'); if(!card) return;
+    if(e.target.closest('.snd')){ var vv=card.querySelector('video'); if(vv){ vv.muted=!vv.muted; e.target.closest('.snd').textContent=vv.muted?'🔇':'🔊'; } return; }
+    var v=card.querySelector('video');
+    if(!v){ v=document.createElement('video'); v.src=card.dataset.src; v.preload='none'; v.loop=true; v.muted=true; v.playsInline=true; v.setAttribute('playsinline',''); card.insertBefore(v,card.querySelector('.shade')); }
+    if(!v.paused){ v.pause(); card.dataset.playing='0'; return; }
+    if(cur&&cur!==card) stop();
+    cur=card; card.dataset.playing='1'; v.play().catch(function(){card.dataset.playing='0'});
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){
+    if(!en.isIntersecting){ var v=en.target.querySelector('video'); if(v){v.pause(); en.target.dataset.playing='0';} }
+  })},{root:sc,threshold:.5});
+  var cards=sc.querySelectorAll('.vcard');
+  cards.forEach(function(c){io.observe(c)});
+  function step(dir){ sc.scrollBy({left:dir*(cards[0].offsetWidth+16),behavior:'smooth'}); }
+  document.querySelector('.varrow.prev').addEventListener('click',function(){step(-1)});
+  document.querySelector('.varrow.next').addEventListener('click',function(){step(1)});
+  sc.addEventListener('scroll',function(){
+    var i=Math.round(sc.scrollLeft/(cards[0].offsetWidth+16));
+    for(var k=0;k<dots.length;k++) dots[k].dataset.on = k===Math.max(0,Math.min(dots.length-1,i)) ? '1':'0';
+  },{passive:true});
+})();
+
 })();
 </script>
 </body>
