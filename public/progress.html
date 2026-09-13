@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="20">
+<title>Hello Padel — прогресс сборки сайта</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0A;--soft:#6B6B6B;--paper:#FFFDF5;--brand:#FFD200;--soft-bg:#FFF6CC;--line:#E6E6E6;
+ --title:'Unbounded',system-ui,sans-serif;--text:'Manrope',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);padding:clamp(20px,4vw,48px)}
+.wrap{max-width:760px;margin:0 auto}
+h1{font:800 clamp(24px,3.4vw,34px)/1.15 var(--title);letter-spacing:-.02em;margin:0 0 6px}
+.sub{font:500 15px/1.5 var(--text);color:var(--soft);margin:0 0 26px}
+.big{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+.pct{font:800 clamp(44px,8vw,76px)/1 var(--title);letter-spacing:-.04em}
+.eta{font:700 15px/1.3 var(--text);color:var(--soft)}
+.track{height:16px;border-radius:999px;background:#EDE7CC;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(10,10,10,.08)}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#FFDE3D,#FFD200 60%,#E5BC00);transition:width .8s cubic-bezier(.16,1,.3,1)}
+.meta{display:flex;justify-content:space-between;font:600 13px/1.3 var(--text);color:var(--soft);margin-top:10px}
+ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:8px}
+li{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;background:#fff;border-radius:14px;
+   padding:12px 14px;box-shadow:inset 0 0 0 1px var(--line);font:500 14px/1.4 var(--text)}
+li .mark{width:26px;height:26px;border-radius:999px;display:grid;place-items:center;font:800 13px/1 var(--title)}
+li.done .mark{background:var(--ink);color:var(--brand)}
+li.now .mark{background:var(--brand);color:var(--ink)}
+li.wait .mark{background:#F0EEE6;color:#B5B2A7}
+li.done{color:var(--soft)}
+li.now{box-shadow:inset 0 0 0 2px var(--ink)}
+li .t{font:600 13px/1.3 var(--text);color:var(--soft);white-space:nowrap}
+li.now .t{color:var(--ink)}
+.note{margin-top:24px;font:400 13px/1.6 var(--text);color:var(--soft)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:999px;background:var(--brand);margin-right:8px;animation:p 1.4s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Сборка сайта на Next.js</h1>
+  <p class="sub"><span class="dot"></span>Страница обновляется сама каждые 20 секунд</p>
+
+  <div class="big">
+    <div class="pct" id="pct">30%</div>
+    <div class="eta" id="eta">осталось примерно 2 часа</div>
+  </div>
+  <div class="track"><div class="fill" id="fill" style="width:30%"></div></div>
+  <div class="meta"><span id="doneCount">6 из 18 шагов</span><span id="stamp">обновлено только что</span></div>
+
+  <ul id="list"></ul>
+
+  <p class="note">Пока идёт сборка, живой сайт не тронут. Готовую страницу можно будет посмотреть на этом же адресе по ссылке «/».</p>
+</div>
+
+<script>
+/* STATE — обновляется по мере работы */
+var STATE = [
+  ["done","Проект Next.js, зависимости, статический экспорт","25 мин"],
+  ["done","Оригинальные компоненты библиотек + витрина","20 мин"],
+  ["done","Перенос дизайн-системы: все стили один в один","5 мин"],
+  ["done","Тексты всех секций вынесены в данные","15 мин"],
+  ["done","Шапка и мобильное меню","8 мин"],
+  ["done","Первый экран и бегущая строка","10 мин"],
+  ["done","Лента коротких видео с перетаскиванием","25 мин"],
+  ["done","Боли, решение и результат","15 мин"],
+  ["done","Бесплатная глава","8 мин"],
+  ["done","Программа: карусель модулей и главы","30 мин"],
+  ["done","Сегменты с вкладками","8 мин"],
+  ["done","Тренер и академия со счётчиками","12 мин"],
+  ["done","Доверие и отзывы","10 мин"],
+  ["done","Тарифы и четыре шага","12 мин"],
+  ["done","FAQ, финальный призыв, футер","12 мин"],
+  ["done","Липкая кнопка покупки на телефоне","5 мин"],
+  ["done","Проверка на десктопе и телефоне","20 мин"],
+  ["done","Сборка статики для заливки","10 мин"]
+];
+
+(function(){
+  var list=document.getElementById('list'), done=0, left=0, total=0;
+  STATE.forEach(function(s){
+    var mins=parseInt(s[2],10)||0; total+=mins;
+    if(s[0]==='done') done+=mins; else left+=mins;
+    var li=document.createElement('li'); li.className=s[0];
+    li.innerHTML='<span class="mark">'+(s[0]==='done'?'✓':s[0]==='now'?'●':'')+'</span>'+
+                 '<span>'+s[1]+'</span><span class="t">'+s[2]+'</span>';
+    list.appendChild(li);
+  });
+  var pct=Math.round(done/total*100);
+  document.getElementById('pct').textContent=pct+'%';
+  document.getElementById('fill').style.width=pct+'%';
+  var dn=STATE.filter(function(s){return s[0]==='done';}).length;
+  document.getElementById('doneCount').textContent=dn+' из '+STATE.length+' шагов';
+  var h=Math.floor(left/60), m=left%60;
+  document.getElementById('eta').textContent='осталось примерно '+(h?h+' ч ':'')+(m?m+' мин':'');
+  document.getElementById('stamp').textContent='обновлено '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+})();
+</script>
+</body>
+</html>
