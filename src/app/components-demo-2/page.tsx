@@ -51,6 +51,8 @@ function Demo({
   tone?: "light" | "dark" | "brand"; flush?: boolean; children: React.ReactNode;
 }) {
   const bg = tone === "dark" ? "bg-[#0A0A0A]" : tone === "brand" ? "bg-[#FFD200]" : "bg-[#FFFDF5]";
+  // «Повторить» пересоздаёт компонент целиком — анимация появления проигрывается заново
+  const [take, setTake] = useState(0);
   return (
     <section id={code} className="min-w-0 scroll-mt-24 border-t-2 border-[#0A0A0A] pt-10">
       <div className="mb-3 flex flex-wrap items-baseline gap-3">
@@ -59,8 +61,17 @@ function Demo({
         <span className="rounded-full bg-[#FFF6CC] px-2.5 py-1 text-xs font-semibold">оригинал · {source}</span>
       </div>
       <p className="mb-5 max-w-[80ch] text-sm leading-relaxed text-neutral-500">{note}</p>
-      <div className={`overflow-hidden rounded-3xl ring-1 ring-black/10 ${bg} ${flush ? "" : "p-4 sm:p-6"}`}>
+      <div key={take} className={`overflow-hidden rounded-3xl ring-1 ring-black/10 ${bg} ${flush ? "" : "p-4 sm:p-6"}`}>
         {children}
+      </div>
+      <div className="mt-4">
+        <button
+          type="button"
+          onClick={() => setTake((t) => t + 1)}
+          className="inline-flex items-center gap-2 rounded-full bg-[#0A0A0A] px-5 py-2.5 font-title text-sm font-extrabold text-[#FFD200] transition-transform hover:scale-[1.03] active:scale-95"
+        >
+          <span aria-hidden="true">↻</span> Повторить
+        </button>
       </div>
     </section>
   );

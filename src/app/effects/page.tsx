@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 
 import SplitText from "@/components/SplitText";
 import ShinyText from "@/components/ShinyText";
@@ -24,19 +22,28 @@ import { SparklesText } from "@/components/ui/sparkles-text";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 
-const CODES = [
-  "3D1","3D2","3D3",
-  "TX1","TX2","TX3","TX4","TX5","TX6","TX7","TX8","TX9","TX10",
-  "GS1","GS2","GS3",
-];
+const CODES = ["3D1", "3D2", "3D3", "TX1", "TX2", "TX3", "TX4", "TX5", "TX6", "TX7", "TX8", "TX9", "TX10"];
 
 function Demo({
-  code, title, source, note, tone = "dark", flush = false, children,
+  code,
+  title,
+  source,
+  note,
+  tone = "dark",
+  flush = false,
+  children,
 }: {
-  code: string; title: string; source: string; note?: string;
-  tone?: "light" | "dark" | "brand"; flush?: boolean; children: React.ReactNode;
+  code: string;
+  title: string;
+  source: string;
+  note?: string;
+  tone?: "light" | "dark" | "brand";
+  flush?: boolean;
+  children: React.ReactNode;
 }) {
-  const bg = tone === "dark" ? "bg-[#0A0A0A]" : tone === "brand" ? "bg-[#FFD200]" : "bg-[#FFFDF5]";
+  const bg = tone === "dark" ? "bg-[#0A0A0A] text-white" : tone === "brand" ? "bg-[#FFD200] text-[#0A0A0A]" : "bg-[#FFFDF5] text-[#0A0A0A]";
+  // «Повторить» пересоздаёт компонент — анимация появления проигрывается заново
+  const [take, setTake] = useState(0);
   return (
     <section id={code} className="min-w-0 scroll-mt-24 border-t-2 border-[#0A0A0A] pt-10">
       <div className="mb-3 flex flex-wrap items-baseline gap-3">
@@ -45,145 +52,71 @@ function Demo({
         <span className="rounded-full bg-[#FFF6CC] px-2.5 py-1 text-xs font-semibold">{source}</span>
       </div>
       {note ? <p className="mb-5 max-w-[80ch] text-sm leading-relaxed text-neutral-500">{note}</p> : null}
-      <div className={`overflow-hidden rounded-3xl ring-1 ring-black/10 ${bg} ${flush ? "" : "p-5 sm:p-8"}`}>
+      <div key={take} className={`overflow-hidden rounded-3xl ring-1 ring-black/10 ${bg} ${flush ? "" : "p-5 sm:p-8"}`}>
         {children}
+      </div>
+      <div className="mt-4">
+        <button
+          type="button"
+          onClick={() => setTake((t) => t + 1)}
+          className="inline-flex items-center gap-2 rounded-full bg-[#0A0A0A] px-5 py-2.5 font-title text-sm font-extrabold text-[#FFD200] transition-transform hover:scale-[1.03] active:scale-95"
+        >
+          <span aria-hidden="true">↻</span> Повторить
+        </button>
       </div>
     </section>
   );
 }
 
-/* ---------- GSAP: параллакс фотографий ---------- */
-function GsapParallax() {
-  const root = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".gp-layer").forEach((el, i) => {
-        gsap.to(el, {
-          yPercent: (i + 1) * -18,
-          ease: "none",
-          scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: true },
-        });
-      });
-    }, root);
-    return () => ctx.revert();
-  }, []);
-  return (
-    <div ref={root} className="relative h-[320px] overflow-hidden rounded-2xl">
-      {[0, 1, 2].map((i) => (
-        <div key={i} className="gp-layer absolute inset-0" style={{ zIndex: 3 - i }}>
-          <Image
-            src={`/photos/modules/0${i + 3}.webp`}
-            alt=""
-            fill
-            className="object-cover"
-            style={{ opacity: 1 - i * 0.28, transform: `scale(${1.1 + i * 0.06})` }}
-          />
-        </div>
-      ))}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/45">
-        <p className="font-title text-2xl font-extrabold text-white">Слои едут с разной скоростью</p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- GSAP: горизонтальная лента модулей с закреплением ---------- */
-function GsapPinnedTrack() {
-  const root = useRef<HTMLDivElement>(null);
-  const track = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      const t = track.current!;
-      const distance = t.scrollWidth - t.clientWidth;
-      if (distance <= 0) return;
-      gsap.to(t, {
-        x: -distance,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root.current,
-          start: "top top",
-          end: () => `+=${distance}`,
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        },
-      });
-    }, root);
-    return () => ctx.revert();
-  }, []);
-  return (
-    <div ref={root} className="relative h-[360px] overflow-hidden rounded-2xl bg-[#111]">
-      <div ref={track} className="flex h-full items-center gap-5 px-6 will-change-transform">
-        {Array.from({ length: 9 }, (_, i) => (
-          <div key={i} className="relative h-[240px] w-[300px] flex-none overflow-hidden rounded-xl sm:w-[360px]">
-            <Image src={`/photos/modules/0${i + 1}.webp`} alt="" fill className="object-cover" />
-            <span className="absolute bottom-3 left-3 rounded-full bg-[#FFD200] px-3 py-1 font-title text-xs font-extrabold text-[#0A0A0A]">
-              Модуль {i + 1}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ---------- GSAP: заголовок проявляется из-под маски ---------- */
-function GsapMaskReveal() {
-  const root = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.from(".gm-line span", {
-        yPercent: 115,
-        duration: 0.9,
-        ease: "power4.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: root.current, start: "top 75%" },
-      });
-    }, root);
-    return () => ctx.revert();
-  }, []);
-  return (
-    <div ref={root} className="py-6">
-      {["Падел по методу", "Маури Андрини —", "теперь на русском"].map((line) => (
-        <div key={line} className="gm-line overflow-hidden">
-          <span className="block font-title text-3xl font-extrabold leading-[1.1] text-white sm:text-5xl">{line}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function EffectsPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl overflow-x-hidden px-4 pb-24 sm:px-5">
+    <main className="mx-auto w-full max-w-6xl overflow-x-clip px-4 pb-24 text-[#0A0A0A] sm:px-5">
       <header className="sticky top-0 z-50 -mx-4 mb-8 border-b border-black/10 bg-[#FFFDF5]/90 px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5">
         <div className="flex flex-wrap items-center gap-2">
-          <b className="font-title text-base font-extrabold">Эффекты: 3D, текст, GSAP</b>
+          <b className="font-title text-base font-extrabold">Эффекты: 3D и текст</b>
           <nav className="flex flex-wrap gap-1 text-xs font-semibold">
             {CODES.map((c) => (
-              <a key={c} href={`#${c}`} className="rounded-full bg-white px-2 py-1 ring-1 ring-black/10 hover:bg-[#FFD200]">{c}</a>
+              <a key={c} href={`#${c}`} className="rounded-full bg-white px-2 py-1 ring-1 ring-black/10 hover:bg-[#FFD200]">
+                {c}
+              </a>
             ))}
+            <a href="/gsap/" className="rounded-full bg-[#0A0A0A] px-2.5 py-1 text-[#FFD200]">
+              GSAP →
+            </a>
           </nav>
         </div>
       </header>
 
-      <div className="mb-10 max-w-[80ch]">
+      <div className="mb-8 max-w-[80ch]">
         <h1 className="font-title text-3xl font-extrabold tracking-tight">Эффекты для первого экрана и заголовков</h1>
         <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-          Три блока: 3D-карточка тренера для первого экрана, текстовые эффекты и работа GSAP —
-          того самого инструмента, которым сделаны эффекты прокрутки на дорогих сайтах.
-          Наводите, прокручивайте, называйте коды.
+          3D-карточка тренера и текстовые эффекты из React Bits, Aceternity и Magic UI. Под каждым блоком —
+          кнопка «Повторить», она проигрывает эффект заново.
         </p>
       </div>
 
-      <div className="grid min-w-0 gap-14">
+      <a
+        href="/gsap/"
+        className="mb-12 flex flex-wrap items-center justify-between gap-5 rounded-3xl bg-[#0A0A0A] p-6 text-white transition-transform hover:-translate-y-0.5 sm:p-8"
+      >
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#FFD200]">Отдельный раздел</p>
+          <p className="mt-2 font-title text-2xl font-extrabold tracking-tight">GSAP — 36 эффектов на четырёх страницах</p>
+          <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-white/65">
+            Текст, прокрутка, движение и SVG. Отсюда GSAP-демо убраны: во вложенных окошках они не срабатывали.
+          </p>
+        </div>
+        <span className="rounded-full bg-[#FFD200] px-6 py-3 font-title text-sm font-extrabold text-[#0A0A0A]">Открыть →</span>
+      </a>
 
+      <div className="grid min-w-0 gap-14">
         {/* ---------- 3D ---------- */}
-        <Demo code="3D1" title="Тренер: карточка наклоняется за курсором" source="React Bits · Tilted Card"
-          note="Фото Маури в 3D: карточка следует за мышкой, подпись всплывает рядом. На телефоне — реагирует на касание.">
+        <Demo
+          code="3D1"
+          title="Тренер: карточка наклоняется за курсором"
+          source="React Bits · Tilted Card"
+          note="Фото Маури в 3D: карточка следует за мышкой, подпись всплывает рядом. На телефоне реагирует на касание."
+        >
           <div className="flex justify-center">
             <TiltedCard
               imageSrc="/photos/04.webp"
@@ -207,8 +140,12 @@ export default function EffectsPage() {
           </div>
         </Demo>
 
-        <Demo code="3D2" title="Тренер: объёмная карточка с бликом" source="Aceternity · Comet Card"
-          note="Карточка живёт в перспективе: наклон, блик и лёгкое приподнимание. Появляется мягко при загрузке.">
+        <Demo
+          code="3D2"
+          title="Тренер: объёмная карточка с бликом"
+          source="Aceternity · Comet Card"
+          note="Карточка живёт в перспективе: наклон, блик и лёгкое приподнимание."
+        >
           <div className="flex justify-center">
             <CometCard rotateDepth={16} translateDepth={16}>
               <div className="w-[min(90vw,360px)] rounded-2xl bg-[#111] p-3 ring-1 ring-white/10">
@@ -224,9 +161,13 @@ export default function EffectsPage() {
           </div>
         </Demo>
 
-        <Demo code="3D3" title="Стопка карточек, которая сама перекладывается" source="React Bits · Card Swap"
-          note="Карточки по очереди выходят вперёд. Годится и для модулей, и для отзывов, и для первого экрана."
-          flush>
+        <Demo
+          code="3D3"
+          title="Стопка карточек, которая сама перекладывается"
+          source="React Bits · Card Swap"
+          note="Карточки по очереди выходят вперёд. Годится для модулей, отзывов или первого экрана."
+          flush
+        >
           <div className="relative h-[420px] w-full overflow-hidden">
             <CardSwap width={420} height={300} cardDistance={54} verticalDistance={64} delay={3200} pauseOnHover skewAmount={5}>
               {[1, 3, 5].map((n) => (
@@ -256,8 +197,7 @@ export default function EffectsPage() {
           />
         </Demo>
 
-        <Demo code="TX2" title="Блик бежит по надписи" source="React Bits · Shiny Text"
-          note="Тонкий приём для подзаголовка или кнопки: по тексту едет светлая полоса.">
+        <Demo code="TX2" title="Блик бежит по надписи" source="React Bits · Shiny Text" note="По тексту едет светлая полоса. Для подзаголовка или кнопки.">
           <ShinyText
             text="166 видеоуроков · 9 модулей · 22 главы"
             className="font-title text-2xl font-extrabold sm:text-3xl"
@@ -268,8 +208,7 @@ export default function EffectsPage() {
           />
         </Demo>
 
-        <Demo code="TX3" title="Текст расшифровывается" source="React Bits · Decrypted Text"
-          note="Буквы перебираются и складываются в слово. Хорошо для одного акцентного слова, не для абзаца.">
+        <Demo code="TX3" title="Текст расшифровывается" source="React Bits · Decrypted Text" note="Буквы перебираются и складываются в слово.">
           <p className="font-title text-2xl font-extrabold text-white sm:text-4xl">
             <DecryptedText
               text="БАНДЕХА · ВИБОРА · ЧИКИТА"
@@ -284,60 +223,65 @@ export default function EffectsPage() {
           </p>
         </Demo>
 
-        <Demo code="TX4" title="Слова всплывают при прокрутке" source="React Bits · Scroll Float"
-          note="Каждое слово поднимается и проявляется по мере того, как блок входит в кадр." flush>
-          <div className="h-[320px] overflow-y-auto px-6 py-10">
-            <div className="h-24" />
-            <ScrollFloat
-              containerClassName="text-white"
-              textClassName="font-title text-3xl font-extrabold sm:text-4xl"
-              stagger={0.04}
-            >
+        <Demo
+          code="TX4"
+          title="Буквы всплывают при прокрутке"
+          source="React Bits · Scroll Float"
+          note="Работает от прокрутки всей страницы: листайте медленно, и буквы поднимаются по одной."
+        >
+          <div className="py-10">
+            <ScrollFloat containerClassName="text-white" textClassName="font-title font-extrabold text-white" stagger={0.03}>
               Ты играешь год, а прогресса нет
             </ScrollFloat>
-            <div className="h-40" />
           </div>
         </Demo>
 
-        <Demo code="TX5" title="Абзац проявляется по словам" source="React Bits · Scroll Reveal"
-          note="Длинный текст расфокусирован, при прокрутке слова наводятся на резкость. Годится для описания курса." flush>
-          <div className="h-[340px] overflow-y-auto px-6 py-10">
-            <div className="h-20" />
+        <Demo
+          code="TX5"
+          title="Абзац проявляется по словам"
+          source="React Bits · Scroll Reveal"
+          note="Слова наводятся на резкость по мере прокрутки страницы. Для описания курса."
+        >
+          <div className="py-10">
             <ScrollReveal
               containerClassName="text-white"
-              textClassName="text-lg leading-relaxed"
+              textClassName="text-white"
               enableBlur
-              baseOpacity={0.1}
+              baseOpacity={0.15}
               blurStrength={5}
             >
               Hello Padel Russia — полная программа международной академии, переведённая на русский официально.
             </ScrollReveal>
-            <div className="h-40" />
           </div>
         </Demo>
 
-        <Demo code="TX6" title="Слово меняется в заголовке" source="Aceternity · Flip Words"
-          note="Одна строка, в которой по очереди сменяются удары. Показывает широту курса в одной фразе.">
+        <Demo code="TX6" title="Слово меняется в заголовке" source="Aceternity · Flip Words" note="Одна строка, в которой по очереди сменяются удары.">
           <div className="font-title text-2xl font-extrabold text-white sm:text-4xl">
-            Разберём твою <FlipWords words={["бандеху", "виbtoру", "чикиту", "подачу", "смэш"]} className="text-[#FFD200]" />
+            Разберём твою <FlipWords words={["бандеху", "вибору", "чикиту", "подачу", "смэш"]} className="text-[#FFD200]" />
           </div>
         </Demo>
 
         <Demo code="TX7" title="Печатная машинка" source="Aceternity · Typewriter Effect">
           <TypewriterEffectSmooth
             words={[
-              { text: "Падел" },
-              { text: "по" },
-              { text: "методу" },
-              { text: "Маури" },
+              { text: "Падел", className: "text-white" },
+              { text: "по", className: "text-white" },
+              { text: "методу", className: "text-white" },
+              { text: "Маури", className: "text-white" },
               { text: "Андрини", className: "text-[#FFD200]" },
             ]}
             className="my-0"
+            cursorClassName="bg-[#FFD200]"
           />
         </Demo>
 
-        <Demo code="TX8" title="Контур текста светится за курсором" source="Aceternity · Text Hover Effect"
-          note="Крупная надпись прозрачная, при наведении внутри букв проявляется градиент. Сильный приём для первого экрана." flush>
+        <Demo
+          code="TX8"
+          title="Контур текста светится за курсором"
+          source="Aceternity · Text Hover Effect"
+          note="Надпись прозрачная, при наведении внутри букв проявляется градиент."
+          flush
+        >
           <div className="h-[260px] w-full">
             <TextHoverEffect text="PADEL" />
           </div>
@@ -349,8 +293,12 @@ export default function EffectsPage() {
           </p>
         </Demo>
 
-        <Demo code="TX10" title="Ещё четыре варианта подачи текста" source="Magic UI · Hyper Text, Sparkles, Line Shadow, Text Animate"
-          note="Собрал в один блок, чтобы сравнить: перебор символов, искры, объёмная тень и появление по словам.">
+        <Demo
+          code="TX10"
+          title="Ещё пять вариантов подачи текста"
+          source="Magic UI · Hyper Text, Sparkles, Line Shadow, Text Animate · Aceternity · Pointer Highlight"
+          note="Перебор символов, искры, объёмная тень, появление по словам и выделение рамкой."
+        >
           <div className="grid gap-7">
             <HyperText className="font-title text-2xl font-extrabold text-white sm:text-3xl" duration={900}>
               HELLO PADEL RUSSIA
@@ -374,31 +322,7 @@ export default function EffectsPage() {
           </div>
         </Demo>
 
-        {/* ---------- GSAP ---------- */}
-        <Demo code="GS1" title="GSAP: слои едут с разной скоростью" source="GSAP · ScrollTrigger"
-          note="Классический параллакс. Библиотека бесплатна целиком с 2025 года, включая плагины прокрутки." flush>
-          <div className="p-5 sm:p-8">
-            <GsapParallax />
-          </div>
-        </Demo>
-
-        <Demo code="GS2" title="GSAP: модули едут вбок, пока страница стоит" source="GSAP · ScrollTrigger + Pin"
-          note="Блок закрепляется, и вместо вертикальной прокрутки едет лента модулей. Тот самый приём с дорогих сайтов. Прокрутите внутри блока." flush>
-          <div className="h-[420px] overflow-y-auto">
-            <div className="h-10" />
-            <GsapPinnedTrack />
-            <div className="h-[420px]" />
-          </div>
-        </Demo>
-
-        <Demo code="GS3" title="GSAP: заголовок выезжает из-под маски" source="GSAP · ScrollTrigger"
-          note="Строки выходят снизу с лёгким опозданием друг за другом. Самый универсальный приём для заголовков секций.">
-          <GsapMaskReveal />
-        </Demo>
-
-        <footer className="border-t-2 border-[#0A0A0A] pt-8 text-sm text-neutral-500">
-          React Bits, Aceternity, Magic UI и GSAP — всё бесплатное и установлено из открытых источников.
-        </footer>
+        <div className="h-[40vh]" />
       </div>
     </main>
   );

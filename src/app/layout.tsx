@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Unbounded, Manrope } from "next/font/google";
 import "./globals.css";
-import "./site.css";
+/* site.css подключается только на странице сайта (src/app/page.tsx):
+   иначе его классы вроде .word и .grid перекрашивают компоненты на витринах */
 
 const unbounded = Unbounded({
   variable: "--font-unbounded",

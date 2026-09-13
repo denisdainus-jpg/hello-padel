@@ -49,6 +49,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
+    const ctx = gsap.context(() => {
     gsap.fromTo(
       el,
       { transformOrigin: '0% 50%', rotate: baseRotation },
@@ -103,9 +104,10 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       );
     }
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    }, el);
+
+    // было: убивались ВСЕ триггеры на странице; теперь откатываются только свои
+    return () => ctx.revert();
   }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
 
   return (

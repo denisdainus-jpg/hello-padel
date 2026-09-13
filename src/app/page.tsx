@@ -1,3 +1,4 @@
+import "./site.css";
 import { Header } from "@/components/site/Header";
 import { VideoLane } from "@/components/site/VideoLane";
 import { ModuleCarousel } from "@/components/site/ModuleCarousel";

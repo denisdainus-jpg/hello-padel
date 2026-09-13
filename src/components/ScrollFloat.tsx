@@ -44,6 +44,8 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
+    // контекст, чтобы при перезапуске откатывались только свои анимации
+    const ctx = gsap.context(() => {
     const charElements = el.querySelectorAll('.inline-block');
 
     gsap.fromTo(
@@ -73,6 +75,9 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
         }
       }
     );
+    }, el);
+
+    return () => ctx.revert();
   }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
 
   return (
