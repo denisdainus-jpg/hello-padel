@@ -310,3 +310,31 @@ section[id]{scroll-margin-top:88px}
 /* Кнопка меню на телефоне: базовое правило .burger{display:none} стоит ниже
    медиазапроса и перебивало его — поэтому дублируем правило в конце файла. */
 @media(max-width:900px){ .burger{ display:grid } }
+
+/* --- шкала уровня в секции «Сегменты» --- */
+.lvl{margin-top:4px}
+.lvl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.lvl-range{font:800 clamp(20px,2.4vw,28px)/1 var(--title);letter-spacing:-.02em}
+.lvl-mods{font:700 13px/1.2 var(--text);letter-spacing:.06em;text-transform:uppercase;opacity:.65}
+.lvl-track{position:relative;height:14px;border-radius:999px;background:rgba(10,10,10,.16);overflow:hidden}
+.lvl-fill{display:block;height:100%;border-radius:999px;background:var(--ink);
+  transition:width .55s cubic-bezier(.16,1,.3,1)}
+.lvl-ticks{display:flex;justify-content:space-between;margin-top:8px;
+  font:700 12px/1 var(--text);letter-spacing:.04em;opacity:.6}
+@media(max-width:600px){.lvl-ticks span:nth-child(even){display:none}}
+
+/* --- таймлайн достижений тренера --- */
+.ctl{display:grid;gap:0;margin-top:4px}
+.ctl-row{position:relative;display:grid;grid-template-columns:minmax(0,140px) 1fr;gap:clamp(14px,2vw,28px);
+  padding:16px 0 16px 26px;border-top:1px solid rgba(255,255,255,.12)}
+.ctl-row:first-child{border-top:0}
+.ctl-row::before{content:"";position:absolute;left:0;top:23px;width:11px;height:11px;border-radius:999px;
+  background:var(--brand);box-shadow:0 0 0 4px rgba(255,210,0,.16)}
+.ctl-row::after{content:"";position:absolute;left:5px;top:34px;bottom:-16px;width:1px;background:rgba(255,255,255,.16)}
+.ctl-row:last-child::after{display:none}
+.ctl-year{font:800 clamp(14px,1.5vw,17px)/1.25 var(--title);color:var(--brand);letter-spacing:-.01em}
+.ctl-text{font:400 16px/1.55 var(--text);color:rgba(255,255,255,.82)}
+@media(max-width:640px){
+  .ctl-row{grid-template-columns:1fr;gap:6px;padding-left:24px}
+  .ctl-row::after{bottom:-16px}
+}

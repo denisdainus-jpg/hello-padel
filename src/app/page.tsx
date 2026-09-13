@@ -16,7 +16,7 @@ import {
   RESULTS,
   FREE_CHAPTER,
   MODULES,
-  COACH_FACTS,
+  COACH_TIMELINE,
   TRUST_STATS,
   TRUST_ARGS,
   REVIEWS,
@@ -341,11 +341,14 @@ export default function Home() {
               Аргентинский тренер и профессиональный игрок. В падел пришёл больше 35 лет назад: начал играть
               в 6 лет в Пеуахо — городе, откуда вышли многие легенды падела. В 14 лет дебютировал на мировой арене.
             </p>
-            <ul className="dots grid" style={{ gap: 14 }}>
-              {COACH_FACTS.map((f) => (
-                <li key={f}>{f}</li>
+            <div className="ctl">
+              {COACH_TIMELINE.map((t) => (
+                <div className="ctl-row" key={t.year}>
+                  <div className="ctl-year">{t.year}</div>
+                  <div className="ctl-text">{t.text}</div>
+                </div>
               ))}
-            </ul>
+            </div>
             <p className="body">Курс — его метод, переведённый на русский.</p>
           </div>
         </div>

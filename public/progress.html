@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="20">
-<title>Hello Padel — прогресс сборки сайта</title>
+<title>Hello Padel — что сделано и что дальше</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,90 +12,101 @@
 :root{--ink:#0A0A0A;--soft:#6B6B6B;--paper:#FFFDF5;--brand:#FFD200;--soft-bg:#FFF6CC;--line:#E6E6E6;
  --title:'Unbounded',system-ui,sans-serif;--text:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);padding:clamp(20px,4vw,48px)}
-.wrap{max-width:760px;margin:0 auto}
-h1{font:800 clamp(24px,3.4vw,34px)/1.15 var(--title);letter-spacing:-.02em;margin:0 0 6px}
-.sub{font:500 15px/1.5 var(--text);color:var(--soft);margin:0 0 26px}
-.big{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
-.pct{font:800 clamp(44px,8vw,76px)/1 var(--title);letter-spacing:-.04em}
-.eta{font:700 15px/1.3 var(--text);color:var(--soft)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);padding:clamp(18px,4vw,48px)}
+.wrap{max-width:820px;margin:0 auto}
+h1{font:800 clamp(22px,3.4vw,34px)/1.15 var(--title);letter-spacing:-.02em;margin:0 0 6px}
+.sub{font:500 14px/1.5 var(--text);color:var(--soft);margin:0 0 24px}
+.big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.pct{font:800 clamp(40px,8vw,72px)/1 var(--title);letter-spacing:-.04em}
+.eta{font:700 14px/1.3 var(--text);color:var(--soft)}
 .track{height:16px;border-radius:999px;background:#EDE7CC;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(10,10,10,.08)}
 .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#FFDE3D,#FFD200 60%,#E5BC00);transition:width .8s cubic-bezier(.16,1,.3,1)}
-.meta{display:flex;justify-content:space-between;font:600 13px/1.3 var(--text);color:var(--soft);margin-top:10px}
-ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:8px}
-li{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;background:#fff;border-radius:14px;
-   padding:12px 14px;box-shadow:inset 0 0 0 1px var(--line);font:500 14px/1.4 var(--text)}
-li .mark{width:26px;height:26px;border-radius:999px;display:grid;place-items:center;font:800 13px/1 var(--title)}
+.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:600 12px/1.3 var(--text);color:var(--soft);margin-top:10px}
+h2{font:800 13px/1 var(--title);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:30px 0 10px}
+ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+li{display:grid;grid-template-columns:24px 1fr;gap:11px;align-items:start;background:#fff;border-radius:13px;
+   padding:11px 13px;box-shadow:inset 0 0 0 1px var(--line);font:500 14px/1.45 var(--text)}
+li .mark{width:24px;height:24px;border-radius:999px;display:grid;place-items:center;font:800 12px/1 var(--title);margin-top:1px}
 li.done .mark{background:var(--ink);color:var(--brand)}
 li.now .mark{background:var(--brand);color:var(--ink)}
 li.wait .mark{background:#F0EEE6;color:#B5B2A7}
 li.done{color:var(--soft)}
 li.now{box-shadow:inset 0 0 0 2px var(--ink)}
-li .t{font:600 13px/1.3 var(--text);color:var(--soft);white-space:nowrap}
-li.now .t{color:var(--ink)}
+li b{display:block;font:700 14px/1.4 var(--text);color:var(--ink)}
+li.done b{color:var(--soft)}
+li span.d{display:block;font:400 13px/1.45 var(--text);color:var(--soft);margin-top:2px}
 .note{margin-top:24px;font:400 13px/1.6 var(--text);color:var(--soft)}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.links a{padding:8px 14px;border-radius:999px;background:var(--ink);color:var(--brand);font:700 12px/1 var(--text);text-decoration:none}
+.links a.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
 .dot{display:inline-block;width:8px;height:8px;border-radius:999px;background:var(--brand);margin-right:8px;animation:p 1.4s ease-in-out infinite}
 @keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Сборка сайта на Next.js</h1>
-  <p class="sub"><span class="dot"></span>Страница обновляется сама каждые 20 секунд</p>
+  <h1>Hello Padel — ход работы</h1>
+  <p class="sub"><span class="dot"></span>Обновляется само каждые 20 секунд · <span id="stamp"></span></p>
 
   <div class="big">
-    <div class="pct" id="pct">30%</div>
-    <div class="eta" id="eta">осталось примерно 2 часа</div>
+    <div class="pct" id="pct">0%</div>
+    <div class="eta" id="eta"></div>
   </div>
-  <div class="track"><div class="fill" id="fill" style="width:30%"></div></div>
-  <div class="meta"><span id="doneCount">6 из 18 шагов</span><span id="stamp">обновлено только что</span></div>
+  <div class="track"><div class="fill" id="fill" style="width:0%"></div></div>
+  <div class="meta"><span id="doneCount"></span><span>этап: витрина компонентов, раунд 2</span></div>
 
-  <ul id="list"></ul>
+  <h2>Сделано</h2><ul id="lDone"></ul>
+  <h2>Делаю сейчас</h2><ul id="lNow"></ul>
+  <h2>Предстоит</h2><ul id="lWait"></ul>
 
-  <p class="note">Пока идёт сборка, живой сайт не тронут. Готовую страницу можно будет посмотреть на этом же адресе по ссылке «/».</p>
+  <div class="links">
+    <a href="/">Новый сайт</a>
+    <a class="alt" href="/components-demo-2/">Витрина раунда 2</a>
+    <a class="alt" href="/effects/">Эффекты: 3D, текст, GSAP</a>
+    <a class="alt" href="/components-demo/">Витрина раунда 1</a>
+  </div>
+
+  <p class="note">Живой сайт не тронут — всё лежит локально и ждёт вашей команды на заливку.</p>
 </div>
 
 <script>
-/* STATE — обновляется по мере работы */
 var STATE = [
-  ["done","Проект Next.js, зависимости, статический экспорт","25 мин"],
-  ["done","Оригинальные компоненты библиотек + витрина","20 мин"],
-  ["done","Перенос дизайн-системы: все стили один в один","5 мин"],
-  ["done","Тексты всех секций вынесены в данные","15 мин"],
-  ["done","Шапка и мобильное меню","8 мин"],
-  ["done","Первый экран и бегущая строка","10 мин"],
-  ["done","Лента коротких видео с перетаскиванием","25 мин"],
-  ["done","Боли, решение и результат","15 мин"],
-  ["done","Бесплатная глава","8 мин"],
-  ["done","Программа: карусель модулей и главы","30 мин"],
-  ["done","Сегменты с вкладками","8 мин"],
-  ["done","Тренер и академия со счётчиками","12 мин"],
-  ["done","Доверие и отзывы","10 мин"],
-  ["done","Тарифы и четыре шага","12 мин"],
-  ["done","FAQ, финальный призыв, футер","12 мин"],
-  ["done","Липкая кнопка покупки на телефоне","5 мин"],
-  ["done","Проверка на десктопе и телефоне","20 мин"],
-  ["done","Сборка статики для заливки","10 мин"]
+  ["done","Сайт перенесён на Next.js","12 секций, все тексты, интерактив, статический экспорт собирается","180 мин"],
+  ["done","Правка про бесплатную главу","Везде «одна глава бесплатно, бот подберёт под уровень» вместо главы про бандеху","15 мин"],
+  ["done","Починена кнопка меню на телефоне","Баг был и в вашей текущей версии: меню не открывалось вообще","10 мин"],
+  ["done","Шкала 1.0 → 5.0 в сегментах","Одобрено вами: маркер едет при переключении вкладки, подпись уровня и модулей","15 мин"],
+  ["done","Достижения тренера по годам","Одобрено вами: вертикальный таймлайн вместо списка регалий","15 мин"],
+  ["done","Установлены 24 новых компонента","Оригиналы Aceternity и Magic UI + Lenis и GSAP для плавной прокрутки","20 мин"],
+  ["done","Собрана витрина раунда 2","27 вариантов: первый экран, модули, боли, решение, глава, отзывы, тарифы, финал, FAQ","70 мин"],
+  ["done","Проверка витрины и правки","Убрано растягивание страницы, починен тёмный текст, все блоки влезают в телефон","25 мин"],
+  ["done","Модули M1 доведены","Карточки в пропорции фотографии 1465×1072, без размытия, адаптированы под телефон","15 мин"],
+  ["done","Подключены React Bits и GSAP","8 компонентов React Bits + 12 текстовых эффектов + собственные эффекты на GSAP","45 мин"],
+  ["done","Собрана страница эффектов","16 демо: 3D-карточки тренера, текстовые эффекты, GSAP-прокрутка","50 мин"],
+  ["done","Сборка статики","npm run build проходит, все пять страниц собираются","10 мин"],
+  ["now","Ваш выбор кодов","Называете понравившиеся: 3D1, TX2, GS2, P1 и так далее","—"],
+  ["wait","Встраивание выбранного в сайт","Замена секций на выбранные компоненты, проверка на телефоне","90 мин"],
+  ["wait","Заливка на Timeweb","Только по вашей отдельной команде","15 мин"]
 ];
 
 (function(){
-  var list=document.getElementById('list'), done=0, left=0, total=0;
-  STATE.forEach(function(s){
-    var mins=parseInt(s[2],10)||0; total+=mins;
-    if(s[0]==='done') done+=mins; else left+=mins;
-    var li=document.createElement('li'); li.className=s[0];
-    li.innerHTML='<span class="mark">'+(s[0]==='done'?'✓':s[0]==='now'?'●':'')+'</span>'+
-                 '<span>'+s[1]+'</span><span class="t">'+s[2]+'</span>';
-    list.appendChild(li);
-  });
+  var done=0,total=0;
+  STATE.forEach(function(s){var m=parseInt(s[3],10)||0;total+=m;if(s[0]==='done')done+=m;});
   var pct=Math.round(done/total*100);
   document.getElementById('pct').textContent=pct+'%';
   document.getElementById('fill').style.width=pct+'%';
   var dn=STATE.filter(function(s){return s[0]==='done';}).length;
-  document.getElementById('doneCount').textContent=dn+' из '+STATE.length+' шагов';
-  var h=Math.floor(left/60), m=left%60;
-  document.getElementById('eta').textContent='осталось примерно '+(h?h+' ч ':'')+(m?m+' мин':'');
+  document.getElementById('doneCount').textContent=dn+' из '+STATE.length+' шагов готово';
+  var left=0; STATE.forEach(function(s){if(s[0]!=='done')left+=parseInt(s[3],10)||0;});
+  var h=Math.floor(left/60),m=left%60;
+  document.getElementById('eta').textContent='до готовой витрины и встраивания — примерно '+(h?h+' ч ':'')+(m?m+' мин':'');
   document.getElementById('stamp').textContent='обновлено '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  var box={done:document.getElementById('lDone'),now:document.getElementById('lNow'),wait:document.getElementById('lWait')};
+  STATE.forEach(function(s){
+    var li=document.createElement('li'); li.className=s[0];
+    li.innerHTML='<span class="mark">'+(s[0]==='done'?'✓':s[0]==='now'?'●':'')+'</span>'+
+                 '<span><b>'+s[1]+'</b><span class="d">'+s[2]+'</span></span>';
+    box[s[0]].appendChild(li);
+  });
 })();
 </script>
 </body>
