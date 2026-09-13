@@ -306,3 +306,7 @@ section[id]{scroll-margin-top:88px}
 .eco-counters .hero span{color:rgba(255,255,255,.85)}
 @media(min-width:641px){.eco-counters{grid-template-columns:1.35fr 1fr 1fr;align-items:end}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+
+/* Кнопка меню на телефоне: базовое правило .burger{display:none} стоит ниже
+   медиазапроса и перебивало его — поэтому дублируем правило в конце файла. */
+@media(max-width:900px){ .burger{ display:grid } }
