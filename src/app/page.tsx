@@ -1,11 +1,11 @@
 import "./site.css";
 import { Header } from "@/components/site/Header";
 import { VideoLane } from "@/components/site/VideoLane";
-import { ModuleCarousel } from "@/components/site/ModuleCarousel";
 import { SegmentTabs } from "@/components/site/SegmentTabs";
 import { AcademyCounters } from "@/components/site/Counters";
 import { MobileBar } from "@/components/site/MobileBar";
 import { LevelScale } from "@/components/site/LevelScale";
+import { SiteMotion } from "@/components/site/SiteMotion";
 import {
   BOT,
   CHANNEL,
@@ -17,6 +17,7 @@ import {
   RESULTS,
   FREE_CHAPTER,
   MODULES,
+  SEGMENTS,
   COACH_TIMELINE,
   TRUST_STATS,
   TRUST_ARGS,
@@ -26,6 +27,14 @@ import {
   FAQ,
   NAV,
 } from "@/lib/content";
+
+/* T5 — удары, которые перебираются на табло; T6 — фразы печатной машинки */
+const SHOTS = ["ВИБОРА", "ЧИКИТА", "БАХАДА", "СМЭШ", "БАНДЕХА"];
+const TYPED = [
+  "перестанешь бить смэш вместо бандехи",
+  "поймёшь, куда встать после стекла",
+  "начнёшь переводить защиту в атаку",
+];
 
 export default function Home() {
   return (
@@ -37,24 +46,30 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-in">
             <div className="stack" style={{ gap: 26 }}>
-              <span className="badge">Официальный курс Hello Padel Academy в России</span>
-              <h1>Падел по методу Маури Андрини — теперь на русском</h1>
-              <p className="lead">
-                166 видеоуроков от первого хвата до тактики в паре. Андрини — двукратный чемпион мира
-                среди юниоров и главный тренер сборной Великобритании.
+              <span className="badge" data-intro>
+                <span className="fx-shine">Официальный курс Hello Padel Academy в России</span>
+              </span>
+              <h1 data-intro>Падел по методу Маури Андрини — теперь на русском</h1>
+              <p className="lead" data-intro>
+                166 видеоуроков от первого хвата до тактики в паре. Андрини — главный тренер сборной
+                Великобритании на протяжении 7 лет и двукратный чемпион мира среди юниоров.
               </p>
               <div className="cta-row">
-                <a className="btn" href={BOT}>
+                <a className="btn" href={BOT} data-intro>
                   Купить доступ — от 2 990 ₽
                 </a>
-                <a className="btn ghost" href={BOT}>
+                <a className="btn ghost" href={BOT} data-intro>
                   Забрать главу бесплатно
                 </a>
               </div>
-              <span className="fineprint">{FINEPRINT}</span>
-              <div className="note">Одна глава курса — бесплатно. Бот подберёт её под твой уровень.</div>
+              <span className="fineprint" data-intro>
+                {FINEPRINT}
+              </span>
+              <div className="note" data-intro>
+                Одна глава курса — бесплатно. Бот подберёт её под твой уровень.
+              </div>
             </div>
-            <div className="hero-shot">
+            <div className="hero-shot" data-intro>
               <div className="court" aria-hidden="true">
                 <i style={{ left: "6%", right: "6%", top: "8%", height: 3 }} />
                 <i style={{ left: "6%", right: "6%", bottom: "8%", height: 3 }} />
@@ -72,10 +87,11 @@ export default function Home() {
                 fetchPriority="high"
                 alt="Маури Андрини с ракеткой Hello Padel"
               />
+              <span className="fx-glare" aria-hidden="true" />
               <span className="cap">Маури Андрини · автор методики · 9 модулей, 22 главы, 166 уроков</span>
             </div>
           </div>
-          <div className="stats">
+          <div className="stats" data-intro>
             {HERO_STATS.map((s) => (
               <div key={s.l}>
                 <b>{s.n}</b>
@@ -94,7 +110,7 @@ export default function Home() {
               Видео
             </p>
             <h2 className="h2">Восемь советов, которые можно попробовать сегодня</h2>
-            <p className="lead" style={{ color: "rgba(255,255,255,.85)", maxWidth: "70ch" }}>
+            <p className="lead" data-fx="blur" style={{ color: "rgba(255,255,255,.85)", maxWidth: "70ch" }}>
               Это короткие ролики из наших соцсетей — один совет за минуту. В курсе уроки полноценные:
               от 2 до 15 минут каждый, 166 штук, разложенных по порядку от первого хвата до тактики в паре.
             </p>
@@ -131,139 +147,91 @@ export default function Home() {
         </ul>
       </div>
 
-      {/* 3 — боли */}
-      <section className="sect">
-        <div className="wrap grid" style={{ gap: "clamp(32px,4vw,48px)" }}>
-          <div className="stack">
-            <p className="kick">Знакомо?</p>
-            <h2 className="h2">Ты играешь год, а прогресса нет</h2>
+      {/* 3 — тренер и академия */}
+      <section className="sect dark" id="coach">
+        <div className="wrap coachgrid">
+          <span className="glow" aria-hidden="true" style={{ left: "26%", top: "44%", width: "min(700px,90%)" }} />
+          <div className="coach-shot">
+            <span className="plate">Маури Андрини · основатель Hello Padel Academy</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/photos/04.webp" width={900} height={653} loading="lazy" alt="Маури Андрини с ракеткой" />
           </div>
-          <div className="cards">
-            {PAINS.map((p) => (
-              <div className="card" key={p.n}>
-                <div className="num">{p.n}</div>
-                <h3>{p.h}</h3>
-                <p>{p.p}</p>
-              </div>
-            ))}
-          </div>
-          <div className="split">
-            <div className="cutout">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/photos/08.webp" width={620} height={526} loading="lazy" alt="Маури Андрини разводит руками" />
-            </div>
-            <p className="lead">Курс закрывает все шесть пунктов. Ниже — как именно.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 4 — решение и результат */}
-      <section className="sect brandish" id="course">
-        <div className="wrap grid" style={{ gap: "clamp(32px,4vw,48px)" }}>
-          <div className="stack">
-            <p className="kick" style={{ color: "var(--ink)" }}>
-              Решение
-            </p>
-            <h2 className="h2">Не набор роликов, а система</h2>
-          </div>
-          <p className="body">
-            Hello Padel Russia — это полная программа международной академии Hello Padel, переведённая на
-            русский официально. 9 модулей ведут от истории и правил игры до тактики уровня «Совершенный
-            игрок». Каждый удар разобран по шагам: подготовка, выполнение, куда направлять, какие ошибки
-            допускают чаще всего.
-          </p>
-          <div className="split">
-            <p className="lead">
-              Тот же материал, по которому академия учит тренеров в двадцати странах, — теперь на русском.
-            </p>
-            <div className="cutout">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/photos/03.webp" width={660} height={762} loading="lazy" alt="Маури Андрини с логотипом Hello Padel" />
-            </div>
-          </div>
-          <div className="cols">
-            {SOLUTION_COLS.map((c) => (
-              <div className="col" key={c.h}>
-                <h3>{c.h}</h3>
-                <p>{c.p}</p>
-              </div>
-            ))}
-          </div>
-          <div className="stack" style={{ marginTop: "clamp(20px,2.5vw,28px)" }}>
-            <p className="kick" style={{ color: "var(--ink)" }}>
-              Результат
-            </p>
-            <h3 className="h2">Что ты начнёшь делать на корте</h3>
-          </div>
-          <ul className="checks">
-            {RESULTS.map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ul>
-          <p className="body">
-            Курс даёт технику и тактику. Прогресс на корте зависит от того, сколько ты играешь.
-          </p>
-        </div>
-      </section>
-
-      {/* 5 — бесплатная глава */}
-      <section className="sect dark">
-        <div
-          className="wrap"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))",
-            gap: "clamp(32px,4vw,48px)",
-            alignItems: "start",
-          }}
-        >
-          <div className="grid" style={{ gap: 22 }}>
+          <div className="grid" style={{ gap: 24, minWidth: 0 }}>
             <p className="kick" style={{ color: "rgba(255,255,255,.6)" }}>
-              Без оплаты
+              Автор методики
             </p>
-            <h2 className="h2">Забери одну главу бесплатно</h2>
-            <p className="lead" style={{ color: "rgba(255,255,255,.85)" }}>
-              Не превью и не нарезка, а целая глава курса со всеми уроками внутри. Бот спросит, на каком ты
-              уровне, и откроет ту главу, которая нужна именно тебе.
+            <h2 className="h2" data-fx="scatter">
+              Маури Андрини
+            </h2>
+            <p className="lead" style={{ maxWidth: "70ch" }}>
+              Аргентинский тренер и профессиональный игрок. В падел пришёл больше 35 лет назад: начал играть
+              в 6 лет в Пеуахо — городе, откуда вышли многие легенды падела. В 14 лет дебютировал на мировой арене.
             </p>
-            <div className="grid" style={{ gap: 12, justifyItems: "start" }}>
-              <a className="btn" href={BOT}>
-                Забрать главу в боте
-              </a>
-              <span style={{ font: "400 15px/1.5 var(--text)", color: "rgba(255,255,255,.7)" }}>
-                Открывается в Telegram, @russian_padel_bot. Оплата не нужна.
-              </span>
-            </div>
-          </div>
-          <div className="grid" style={{ gap: 20 }}>
-            <div className="cutout">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/photos/07.webp" width={660} height={780} loading="lazy" alt="Маури Андрини готовится к удару" />
-            </div>
-            <ol className="glass">
-              {FREE_CHAPTER.map((f, i) => (
-                <li key={f}>
-                  <b>{i + 1}</b>
-                  {f}
-                </li>
+            <div className="ctl">
+              {COACH_TIMELINE.map((t) => (
+                <div className="ctl-row" key={t.year}>
+                  <div className="ctl-year">{t.year}</div>
+                  <div className="ctl-text">{t.text}</div>
+                </div>
               ))}
-            </ol>
+            </div>
+            <p className="body">Курс — его метод, переведённый на русский.</p>
           </div>
+        </div>
+        <div
+          className="wrap grid"
+          style={{ gap: "clamp(28px,3vw,40px)", marginTop: "clamp(40px,5vw,64px)" }}
+        >
+          <div className="stack">
+            <p className="kick" style={{ color: "rgba(255,255,255,.6)" }}>
+              За курсом стоит академия
+            </p>
+            <h3 className="h2">Ты покупаешь не ролики, а методику</h3>
+            <p className="lead eco-lead">
+              Hello Padel Academy обучает падел с 2013 года. По этой методике сертифицируют тренеров по всему
+              миру — и это тот же материал, что в курсе.
+            </p>
+          </div>
+          <LevelScale />
+          <AcademyCounters />
         </div>
       </section>
 
-      {/* 6 — программа */}
+      {/* 4 — программа: S2 лента модулей едет вбок */}
       <section className="sect" id="program" style={{ background: "var(--off)" }}>
         <div className="wrap grid" style={{ gap: "clamp(28px,3vw,40px)" }}>
           <div className="stack">
             <p className="kick">Программа</p>
             <h2 className="h2">9 модулей, 22 главы, 166 уроков</h2>
             <p className="body" style={{ color: "var(--ink-soft)" }}>
-              Пролистай карточки, чтобы увидеть маршрут курса.
+              Маршрут курса — от первого хвата до тактики в паре.
             </p>
           </div>
 
-          <ModuleCarousel />
+          <div className="fx-lane">
+            <div className="fx-lane-head">
+              <span>Маршрут курса</span>
+              <span>9 модулей →</span>
+            </div>
+            <div className="fx-track">
+              {MODULES.map((m) => (
+                <article className="fx-mod" key={m.n}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/photos/modules/0${m.n}.webp`} width={1465} height={1072} loading="lazy" alt={m.title} />
+                  <div>
+                    <small>
+                      Модуль {m.n} · {m.les}
+                    </small>
+                    <b>{m.title}</b>
+                    <p>{m.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="fx-prog" aria-hidden="true">
+              <i />
+            </div>
+          </div>
 
           <details className="modules-toggle">
             <summary>Показать все 22 главы</summary>
@@ -305,7 +273,130 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 — сегменты */}
+      {/* 5 — решение и результат */}
+      <section className="sect brandish" id="course">
+        <div className="wrap grid" style={{ gap: "clamp(32px,4vw,48px)" }}>
+          <div className="stack">
+            <p className="kick" style={{ color: "var(--ink)" }}>
+              Решение
+            </p>
+            <h2 className="h2" data-fx="chars-scrub">
+              Не набор роликов, а система
+            </h2>
+          </div>
+          <p className="body">
+            Hello Padel Russia — это полная программа международной академии Hello Padel, переведённая на
+            русский официально. 9 модулей ведут от истории и правил игры до тактики уровня «Совершенный
+            игрок». Каждый удар разобран по шагам: подготовка, выполнение, куда направлять, какие ошибки
+            допускают чаще всего.
+          </p>
+          <div className="split">
+            <p className="lead" data-fx="words-ink" style={{ font: "700 clamp(22px,3vw,36px)/1.3 var(--title)" }}>
+              Тот же материал, по которому академия учит тренеров в двадцати странах, — теперь на русском.
+            </p>
+            <div className="cutout">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/photos/03.webp" width={660} height={762} loading="lazy" alt="Маури Андрини с логотипом Hello Padel" />
+            </div>
+          </div>
+          <div className="cols">
+            {SOLUTION_COLS.map((c) => (
+              <div className="col" key={c.h}>
+                <h3>{c.h}</h3>
+                <p>{c.p}</p>
+              </div>
+            ))}
+          </div>
+          <div className="fx-scramble">
+            <p className="kick" style={{ color: "var(--ink)" }}>
+              В курсе разобран каждый удар
+            </p>
+            <p className="fx-scramble-word" data-words={SHOTS.join(",")} aria-label={SHOTS.join(", ")}>
+              БАНДЕХА
+            </p>
+          </div>
+          <div className="stack" style={{ marginTop: "clamp(20px,2.5vw,28px)" }}>
+            <p className="kick" style={{ color: "var(--ink)" }}>
+              Результат
+            </p>
+            <h3 className="h2">Что ты начнёшь делать на корте</h3>
+            <p className="fx-type" aria-hidden="true">
+              С курсом ты
+              <br />
+              <span className="fx-type-text" data-phrases={TYPED.join("|")}>
+                {TYPED[0]}
+              </span>
+              <span className="fx-type-cursor">|</span>
+            </p>
+          </div>
+          <ul className="checks">
+            {RESULTS.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
+          <p className="body">
+            Курс даёт технику и тактику. Прогресс на корте зависит от того, сколько ты играешь.
+          </p>
+        </div>
+      </section>
+
+      {/* 6 — бесплатная глава: S4 фото раскрывается */}
+      <section className="sect dark">
+        <div className="wrap grid" style={{ gap: "clamp(40px,5vw,64px)" }}>
+          <div className="fx-reveal">
+            <p className="fx-reveal-title">Не нарезка, а целая глава</p>
+            <div className="fx-reveal-clip">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/photos/modules/05.webp" width={1465} height={1072} loading="lazy" alt="" />
+            </div>
+            <div className="fx-reveal-cap">
+              <p>
+                Одна глава курса — <span className="fx-wave">бесплатно</span>
+              </p>
+              <a className="btn" href={BOT}>
+                Забрать главу в боте
+              </a>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))",
+              gap: "clamp(32px,4vw,48px)",
+              alignItems: "start",
+            }}
+          >
+            <div className="grid" style={{ gap: 22 }}>
+              <p className="kick" style={{ color: "rgba(255,255,255,.6)" }}>
+                Без оплаты
+              </p>
+              <h2 className="h2">Забери одну главу бесплатно</h2>
+              <p className="lead" style={{ color: "rgba(255,255,255,.85)" }}>
+                Не превью и не нарезка, а целая глава курса со всеми уроками внутри. Бот спросит, на каком ты
+                уровне, и откроет ту главу, которая нужна именно тебе.
+              </p>
+              <div className="grid" style={{ gap: 12, justifyItems: "start" }}>
+                <a className="btn" href={BOT}>
+                  Забрать главу в боте
+                </a>
+                <span style={{ font: "400 15px/1.5 var(--text)", color: "rgba(255,255,255,.7)" }}>
+                  Открывается в Telegram, @russian_padel_bot. Оплата не нужна.
+                </span>
+              </div>
+            </div>
+            <ol className="glass">
+              {FREE_CHAPTER.map((f, i) => (
+                <li key={f}>
+                  <b>{i + 1}</b>
+                  {f}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* 7 — сегменты: S6 уровень растёт от 1.0 до 5.0 */}
       <section className="sect brandish">
         <div className="wrap grid" style={{ gap: "clamp(24px,3vw,36px)" }}>
           <div className="stack">
@@ -316,6 +407,20 @@ export default function Home() {
               разные модули и главы. Выбери себя:
             </p>
           </div>
+          <div className="fx-level" aria-hidden="true">
+            <p className="fx-level-k">Твой уровень по шкале академии</p>
+            <p className="fx-level-n">5.0</p>
+            <div className="fx-level-bar">
+              <i />
+            </div>
+            <div className="fx-level-st">
+              {SEGMENTS.slice(0, 3).map((s) => (
+                <span key={s.tab} data-on="1">
+                  {s.tab} · {s.mods.toLowerCase()}
+                </span>
+              ))}
+            </div>
+          </div>
           <SegmentTabs />
           <p className="body">
             Курс устроен так, что каждый видит собственные ошибки — в технике удара, в позиции на корте, в
@@ -324,51 +429,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 — тренер и академия */}
-      <section className="sect dark" id="coach">
-        <div className="wrap coachgrid">
-          <span className="glow" aria-hidden="true" style={{ left: "26%", top: "44%", width: "min(700px,90%)" }} />
-          <div className="coach-shot">
-            <span className="plate">Маури Андрини · основатель Hello Padel Academy</span>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/photos/04.webp" width={900} height={653} loading="lazy" alt="Маури Андрини с ракеткой" />
-          </div>
-          <div className="grid" style={{ gap: 24, minWidth: 0 }}>
-            <p className="kick" style={{ color: "rgba(255,255,255,.6)" }}>
-              Автор методики
-            </p>
-            <h2 className="h2">Маури Андрини</h2>
-            <p className="lead" style={{ maxWidth: "70ch" }}>
-              Аргентинский тренер и профессиональный игрок. В падел пришёл больше 35 лет назад: начал играть
-              в 6 лет в Пеуахо — городе, откуда вышли многие легенды падела. В 14 лет дебютировал на мировой арене.
-            </p>
-            <div className="ctl">
-              {COACH_TIMELINE.map((t) => (
-                <div className="ctl-row" key={t.year}>
-                  <div className="ctl-year">{t.year}</div>
-                  <div className="ctl-text">{t.text}</div>
-                </div>
-              ))}
-            </div>
-            <p className="body">Курс — его метод, переведённый на русский.</p>
-          </div>
-        </div>
-        <div
-          className="wrap grid"
-          style={{ gap: "clamp(28px,3vw,40px)", marginTop: "clamp(40px,5vw,64px)" }}
-        >
+      {/* 8 — боли: S3 карточки ложатся стопкой */}
+      <section className="sect">
+        <div className="wrap grid" style={{ gap: "clamp(32px,4vw,48px)" }}>
           <div className="stack">
-            <p className="kick" style={{ color: "rgba(255,255,255,.6)" }}>
-              За курсом стоит академия
-            </p>
-            <h3 className="h2">Ты покупаешь не ролики, а методику</h3>
-            <p className="lead eco-lead">
-              Hello Padel Academy обучает падел с 2013 года. По этой методике сертифицируют тренеров по всему
-              миру — и это тот же материал, что в курсе.
+            <p className="kick">Знакомо?</p>
+            <h2 className="h2">Ты играешь год, а прогресса нет</h2>
+          </div>
+          <div className="fx-stack">
+            {PAINS.map((p) => (
+              <article className="fx-pain" key={p.n}>
+                <span className="fx-pain-n">0{p.n}</span>
+                <div>
+                  <h3>{p.h}</h3>
+                  <p>{p.p}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="split">
+            <div className="cutout">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/photos/08.webp" width={620} height={526} loading="lazy" alt="Маури Андрини разводит руками" />
+            </div>
+            <p className="lead">
+              Курс закрывает{" "}
+              <span className="fx-mark">
+                <i aria-hidden="true" />
+                все шесть пунктов
+              </span>
+              . Ниже — как именно.
             </p>
           </div>
-          <LevelScale />
-          <AcademyCounters />
         </div>
       </section>
 
@@ -425,7 +517,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10 — тарифы и шаги */}
+      {/* 10 — тарифы и шаги: V5 линия по контуру, M3 магнитные кнопки, S9 шаги */}
       <section className="sect dark" id="pricing">
         <div className="wrap grid" style={{ gap: "clamp(36px,4vw,56px)" }}>
           <div className="stack">
@@ -438,6 +530,12 @@ export default function Home() {
             <span className="glow" aria-hidden="true" style={{ width: "min(760px,70%)" }} />
             {PLANS.map((p) => (
               <div className={p.top ? "plan top" : "plan"} key={p.kick}>
+                {p.top ? (
+                  <svg className="fx-run" aria-hidden="true">
+                    <rect x="2" y="2" rx="28" fill="none" stroke="#FFD200" strokeWidth="3" strokeLinecap="round" />
+                    <rect x="2" y="2" rx="28" fill="none" stroke="#FFD200" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                ) : null}
                 {p.flag ? <span className="flag">{p.flag}</span> : null}
                 <p className="kick" style={p.top ? { color: "var(--ink)" } : undefined}>
                   {p.kick}
@@ -456,27 +554,25 @@ export default function Home() {
             ))}
           </div>
           <p className="body">Навсегда — это ≈30 ₽ за урок. Один тариф оплачивается один раз, автосписаний нет.</p>
-          <div
-            className="stack"
-            style={{
-              marginTop: "clamp(24px,3vw,32px)",
-              paddingTop: "clamp(28px,3.5vw,44px)",
-              borderTop: "1px solid rgba(255,255,255,.12)",
-            }}
-          >
-            <p className="kick" style={{ color: "rgba(255,255,255,.6)" }}>
-              Как это работает
-            </p>
-            <h3 className="h2">Четыре шага до первого урока</h3>
-          </div>
-          <div className="steps">
-            {STEPS.map((s) => (
-              <div className="step" key={s.n}>
-                <b>{s.n}</b>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
+          <div className="fx-steps" style={{ marginTop: "clamp(24px,3vw,32px)" }}>
+            <div className="fx-steps-head">
+              <div className="fx-steps-rail" aria-hidden="true">
+                <i />
               </div>
-            ))}
+              <div>
+                <p className="kick">Как это работает</p>
+                <h3>Четыре шага до первого урока</h3>
+              </div>
+            </div>
+            <div className="fx-steps-list">
+              {STEPS.map((s) => (
+                <div className="fx-step" key={s.n}>
+                  <b>{s.n}</b>
+                  <h4>{s.h}</h4>
+                  <p>{s.p}</p>
+                </div>
+              ))}
+            </div>
           </div>
           <p className="body">
             Смотреть можно с телефона, планшета или компьютера — везде, где есть Telegram.
@@ -504,8 +600,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 12 — финал */}
+      {/* 12 — финал: M7 конфетти */}
       <section className="sect brandish final">
+        <div className="fx-confetti" aria-hidden="true" />
         <div className="wrap">
           <span className="glow" aria-hidden="true" style={{ width: "min(900px,100%)" }} />
           <div className="cutout" style={{ maxWidth: 380 }}>
@@ -513,7 +610,7 @@ export default function Home() {
             <img src="/photos/06.webp" width={620} height={529} loading="lazy" alt="Маури Андрини указывает на голову" />
           </div>
           <h2>166 уроков ждут. Начни с бесплатной главы</h2>
-          <p className="lead">
+          <p className="lead" data-fx="blur">
             Забери одну главу курса бесплатно — целиком и под свой уровень. Понравится метод — откроешь полный
             курс прямо в боте.
           </p>
@@ -570,6 +667,7 @@ export default function Home() {
       </footer>
 
       <MobileBar />
+      <SiteMotion />
     </>
   );
 }

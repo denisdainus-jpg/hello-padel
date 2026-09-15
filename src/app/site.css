@@ -11,6 +11,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+html.lenis{scroll-behavior:auto}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -337,4 +338,116 @@ section[id]{scroll-margin-top:88px}
 @media(max-width:640px){
   .ctl-row{grid-template-columns:1fr;gap:6px;padding-left:24px}
   .ctl-row::after{bottom:-16px}
+}
+
+/* ===== GSAP-эффекты (src/components/site/SiteMotion.tsx) =====
+   Без класса .motion (reduced motion) блоки показываются обычным статичным списком. */
+.motion .hero [data-intro]{visibility:hidden}
+@media(pointer:fine){.motion .cta-row .btn,.motion .plan .btn,.motion .final .btn{transition:box-shadow .24s,background .24s,color .24s}}
+
+/* T10 блик по бейджу */
+.fx-shine{background:linear-gradient(100deg,#FFD200 40%,#FFFFFF 50%,#FFD200 60%) 120% 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+/* M2 блик по фото тренера */
+.fx-glare{position:absolute;left:-40%;top:-40%;width:180%;height:180%;border-radius:999px;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(255,255,255,.26),transparent 55%)}
+.hero-shot .cap{z-index:2}
+
+/* T11 маркер */
+.fx-mark{position:relative;isolation:isolate;display:inline-block}
+.fx-mark i{position:absolute;left:-4px;right:-4px;top:.55em;bottom:.05em;z-index:-1;border-radius:3px;background:var(--brand);transform-origin:left}
+.motion .fx-mark i{transform:scaleX(0)}
+
+/* S3 боли стопкой */
+.fx-stack{display:grid;gap:16px}
+.fx-pain{display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:260px;padding:clamp(24px,3.4vw,44px);
+  border-radius:24px;background:var(--ink);color:#fff}
+.fx-pain:nth-child(even){background:var(--brand);color:var(--ink)}
+.fx-pain-n{font:800 clamp(64px,10vw,128px)/.9 var(--title);letter-spacing:-.05em;color:var(--brand)}
+.fx-pain:nth-child(even) .fx-pain-n{color:var(--ink)}
+.fx-pain h3{max-width:20ch;font:700 clamp(22px,3vw,38px)/1.15 var(--title);letter-spacing:-.02em}
+.fx-pain p{margin-top:12px;max-width:48ch;font:400 var(--body)/1.6 var(--text);opacity:.75}
+.motion .fx-stack{position:relative;display:block;height:min(72vh,640px);min-height:420px;overflow:hidden;border-radius:24px}
+.motion .fx-pain{position:absolute;inset:0}
+
+/* T5 табло, T6 печатная машинка */
+.fx-scramble{display:grid;gap:10px}
+.fx-scramble-word{font:800 clamp(44px,8vw,96px)/1 var(--title);letter-spacing:-.03em;min-height:1em}
+.fx-type{font:700 clamp(22px,3vw,36px)/1.3 var(--title);letter-spacing:-.02em;min-height:2.7em}
+.motion .fx-type-text{color:var(--ink)}
+
+/* S4 бесплатная глава */
+.fx-reveal{position:relative;height:min(80vh,720px);min-height:460px;border-radius:28px;overflow:hidden;background:#000}
+.fx-reveal-clip{position:absolute;inset:0;overflow:hidden}
+.fx-reveal-clip img{width:100%;height:100%;object-fit:cover}
+.fx-reveal-clip::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,.1) 55%,transparent)}
+.fx-reveal-title{position:absolute;left:0;right:0;top:7%;z-index:2;padding:0 24px;text-align:center;
+  font:800 clamp(28px,4.4vw,56px)/1.1 var(--title);letter-spacing:-.02em;color:#fff}
+.fx-reveal-cap{position:absolute;left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);bottom:8%;z-index:2;display:grid;gap:20px;justify-items:start}
+.fx-reveal-cap p{max-width:16ch;font:800 clamp(28px,4.4vw,56px)/1.08 var(--title);letter-spacing:-.02em;color:#fff}
+.fx-wave{display:inline-block;color:var(--brand)}
+
+/* S2 лента модулей */
+.fx-lane{display:flex;flex-direction:column;justify-content:center;gap:22px;padding:clamp(20px,3vw,32px) 0;border-radius:28px;background:var(--ink);color:#fff;overflow:hidden}
+.fx-lane-head{display:flex;justify-content:space-between;gap:16px;padding:0 clamp(20px,3vw,32px);font:700 13px/1.2 var(--text);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.fx-track{display:flex;gap:18px;padding:0 clamp(20px,3vw,32px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.fx-track::-webkit-scrollbar{display:none}
+.fx-mod{flex:none;width:min(76vw,440px);border-radius:20px;overflow:hidden;background:#161616;scroll-snap-align:start}
+.fx-mod img{width:100%;aspect-ratio:1465/1072;object-fit:cover}
+.fx-mod div{display:grid;gap:6px;padding:16px 18px 20px}
+.fx-mod small{font:800 12px/1.2 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.fx-mod b{font:700 19px/1.3 var(--text)}
+.fx-mod p{font:400 15px/1.5 var(--text);color:rgba(255,255,255,.62)}
+.fx-prog{display:none;height:4px;margin:0 clamp(20px,3vw,32px);border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.fx-prog i{display:block;height:100%;background:var(--brand);transform-origin:left}
+.motion .fx-lane{height:min(80vh,720px);min-height:460px}
+.motion .fx-track{width:max-content;overflow:visible}
+.motion .fx-prog{display:block}
+
+/* S6 уровень 1.0 → 5.0 */
+.fx-level{display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3vw,32px);padding:clamp(28px,4vw,56px);border-radius:28px;background:var(--ink);color:#fff}
+.motion .fx-level{height:min(74vh,680px);min-height:420px}
+.fx-level-k{font:700 13px/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.fx-level-n{font:800 clamp(90px,18vw,220px)/.9 var(--title);letter-spacing:-.05em;color:var(--brand);font-variant-numeric:tabular-nums}
+.fx-level-bar{height:12px;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.fx-level-bar i{display:block;height:100%;border-radius:999px;background:var(--brand);transform-origin:left}
+.fx-level-st{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font:600 clamp(13px,1.3vw,16px)/1.35 var(--text)}
+.fx-level-st span{color:rgba(255,255,255,.35);transition:color .3s}
+.fx-level-st span[data-on="1"]{color:#fff}
+
+/* V5 линия по контуру тарифа */
+.fx-run{position:absolute;left:-9px;top:-9px;width:calc(100% + 18px);height:calc(100% + 18px);overflow:visible;pointer-events:none}
+
+/* S9 шаги */
+.fx-steps{display:grid;gap:32px;align-content:center;padding:clamp(28px,4vw,56px);border-radius:28px;background:var(--brand);color:var(--ink)}
+@media(min-width:760px){.fx-steps{grid-template-columns:1fr 1.2fr;align-items:center}}
+.motion .fx-steps{height:min(72vh,640px);min-height:440px}
+.fx-steps-head{display:flex;gap:20px}
+.fx-steps-rail{display:none;flex:none;width:6px;border-radius:999px;background:rgba(10,10,10,.15);overflow:hidden}
+.fx-steps-rail i{display:block;height:100%;background:var(--ink);transform-origin:top}
+.motion .fx-steps-rail{display:block}
+.fx-steps-head .kick{color:rgba(10,10,10,.6)}
+.fx-steps-head h3{margin-top:12px;font:700 clamp(28px,4vw,48px)/1.1 var(--title);letter-spacing:-.02em}
+.fx-steps-list{display:grid;gap:28px}
+.motion .fx-steps-list{position:relative;height:260px}
+.motion .fx-step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center}
+.fx-step b{font:800 clamp(64px,8vw,96px)/1 var(--title);letter-spacing:-.04em}
+.fx-step h4{margin:10px 0 0;font:700 24px/1.25 var(--text)}
+.fx-step p{margin-top:8px;max-width:36ch;font:400 16px/1.6 var(--text);color:rgba(10,10,10,.7)}
+
+/* M7 конфетти */
+.fx-confetti{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+.fx-confetti i{position:absolute;display:block;border-radius:2px}
+
+/* SplitText: слово, разбитое на буквы, не переносится посередине */
+.fx-w{white-space:nowrap}
+/* заголовок первого экрана: самое длинное слово «Андрини» помещается в колонку */
+.hero h1{font-size:clamp(36px,5.9vw,76px)}
+
+/* телефон и планшет: карточка тренера сразу после заголовка, дальше текст и кнопки */
+@media(max-width:1000px){
+  .hero-in{grid-template-columns:1fr;gap:22px}
+  .hero-in>.stack{display:contents}
+  .hero-in>.stack>*{order:3}
+  .hero-in>.stack>.badge,.hero-in>.stack>h1{order:1}
+  .hero-shot{order:2}
 }

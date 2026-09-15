@@ -19,6 +19,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hello-padel.ru"),
   title: "Hello Padel Russia — официальный русский курс падел-академии",
   description:
     "Официальный русский перевод курса Hello Padel Academy: 9 модулей, 166 видеоуроков, более 15 часов. Метод Маури Андрини. Одна глава — бесплатно.",
@@ -37,7 +38,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
+      <head>
+        {/* до первой отрисовки: помечаем, что анимации разрешены, чтобы первый экран не мигал */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion')",
+          }}
+        />
+      </head>
       <body className={`${unbounded.variable} ${manrope.variable}`}>{children}</body>
     </html>
   );
